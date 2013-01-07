@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130107224946) do
+ActiveRecord::Schema.define(:version => 20130107233802) do
 
   create_table "accidents", :force => true do |t|
     t.integer  "numac"
@@ -60,5 +60,15 @@ ActiveRecord::Schema.define(:version => 20130107224946) do
   end
 
   add_index "details", ["numac"], :name => "index_details_on_numac"
+
+  create_table "radars", :force => true do |t|
+    t.integer  "type"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "radars", ["type"], :name => "index_radars_on_type"
 
 end

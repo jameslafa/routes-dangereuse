@@ -36,15 +36,30 @@ namespace :import do
     end
   end
 
+  task :radars => :environment do
+    require 'csv'
+    csv_text = File.read(Rails.root.join('db', 'data', 'radars.csv'))
+    csv = CSV.parse(csv_text, :headers => true)
+    csv.each do |row|
+      row = row.to_hash.with_indifferent_access
+      Radar.create!(:latitude => row[:latitude],
+                    :longitude => row[:longitude],
+                    :type => row[:type])
+    end
+  end
+
   task :reimport => :environment do
     puts "Reloading the database..."
     Rake::Task["db:schema:load"].invoke
     puts ""
-    puts "Import accident data..."
+    puts "Import accidents data..."
     Rake::Task["import:accidents"].invoke
     puts ""
     puts "Import accident details data..."
     Rake::Task["import:details"].invoke
+    puts ""
+    puts "Import radars data..."
+    Rake::Task["import:radars"].invoke
     puts ""
     puts "Reimport done."
   end

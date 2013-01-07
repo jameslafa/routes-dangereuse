@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  type: 1
+  latitude: 1.5
+  longitude: 1.5
+
+two:
+  type: 1
+  latitude: 1.5
+  longitude: 1.5

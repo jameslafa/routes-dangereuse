@@ -1,4 +1,7 @@
 RoutesDangereuses::Application.routes.draw do
+  resources :radars
+
+
   resources :details
 
 
