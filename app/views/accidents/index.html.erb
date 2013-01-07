@@ -1,0 +1,51 @@
+<h1>Listing accidents</h1>
+
+<table>
+  <tr>
+    <th>Numac</th>
+    <th>Codeinsee</th>
+    <th>Ville</th>
+    <th>Lumiere</th>
+    <th>Intersection</th>
+    <th>Atmospherique</th>
+    <th>Collision</th>
+    <th>Route</th>
+    <th>Tues</th>
+    <th>Hospitalises</th>
+    <th>Leger</th>
+    <th>Indemnes</th>
+    <th>Gravite</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @accidents.each do |accident| %>
+  <tr>
+    <td><%= accident.numac %></td>
+    <td><%= accident.codeinsee %></td>
+    <td><%= accident.ville %></td>
+    <td><%= accident.lumiere %></td>
+    <td><%= accident.intersection %></td>
+    <td><%= accident.atmospherique %></td>
+    <td><%= accident.collision %></td>
+    <td><%= accident.route %></td>
+    <td><%= accident.tues %></td>
+    <td><%= accident.hospitalises %></td>
+    <td><%= accident.leger %></td>
+    <td><%= accident.indemnes %></td>
+    <td><%= accident.gravite %></td>
+    <td><%= accident.latitude %></td>
+    <td><%= accident.longitude %></td>
+    <td><%= link_to 'Show', accident %></td>
+    <td><%= link_to 'Edit', edit_accident_path(accident) %></td>
+    <td><%= link_to 'Destroy', accident, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Accident', new_accident_path %>

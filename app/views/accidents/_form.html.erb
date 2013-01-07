@@ -1,0 +1,77 @@
+<%= form_for(@accident) do |f| %>
+  <% if @accident.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@accident.errors.count, "error") %> prohibited this accident from being saved:</h2>
+
+      <ul>
+      <% @accident.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :numac %><br />
+    <%= f.number_field :numac %>
+  </div>
+  <div class="field">
+    <%= f.label :codeinsee %><br />
+    <%= f.text_field :codeinsee %>
+  </div>
+  <div class="field">
+    <%= f.label :ville %><br />
+    <%= f.text_field :ville %>
+  </div>
+  <div class="field">
+    <%= f.label :lumiere %><br />
+    <%= f.number_field :lumiere %>
+  </div>
+  <div class="field">
+    <%= f.label :intersection %><br />
+    <%= f.number_field :intersection %>
+  </div>
+  <div class="field">
+    <%= f.label :atmospherique %><br />
+    <%= f.number_field :atmospherique %>
+  </div>
+  <div class="field">
+    <%= f.label :collision %><br />
+    <%= f.number_field :collision %>
+  </div>
+  <div class="field">
+    <%= f.label :route %><br />
+    <%= f.number_field :route %>
+  </div>
+  <div class="field">
+    <%= f.label :tues %><br />
+    <%= f.number_field :tues %>
+  </div>
+  <div class="field">
+    <%= f.label :hospitalises %><br />
+    <%= f.number_field :hospitalises %>
+  </div>
+  <div class="field">
+    <%= f.label :leger %><br />
+    <%= f.number_field :leger %>
+  </div>
+  <div class="field">
+    <%= f.label :indemnes %><br />
+    <%= f.number_field :indemnes %>
+  </div>
+  <div class="field">
+    <%= f.label :gravite %><br />
+    <%= f.text_field :gravite %>
+  </div>
+  <div class="field">
+    <%= f.label :latitude %><br />
+    <%= f.text_field :latitude %>
+  </div>
+  <div class="field">
+    <%= f.label :longitude %><br />
+    <%= f.text_field :longitude %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

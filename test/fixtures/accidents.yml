@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  numac: 1
+  codeinsee: MyString
+  ville: MyString
+  lumiere: 1
+  intersection: 1
+  atmospherique: 1
+  collision: 1
+  route: 1
+  tues: 1
+  hospitalises: 1
+  leger: 1
+  indemnes: 1
+  gravite: 9.99
+  latitude: 1.5
+  longitude: 1.5
+
+two:
+  numac: 1
+  codeinsee: MyString
+  ville: MyString
+  lumiere: 1
+  intersection: 1
+  atmospherique: 1
+  collision: 1
+  route: 1
+  tues: 1
+  hospitalises: 1
+  leger: 1
+  indemnes: 1
+  gravite: 9.99
+  latitude: 1.5
+  longitude: 1.5

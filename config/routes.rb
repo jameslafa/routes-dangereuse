@@ -1,4 +1,10 @@
 RoutesDangereuses::Application.routes.draw do
+  resources :details
+
+
+  resources :accidents
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

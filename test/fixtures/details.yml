@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  numac: 1
+  vehicule: 1
+  misecirc: 1
+  tues: 1
+  hospitalises: 1
+  legers: 1
+  indemnes: 1
+
+two:
+  numac: 1
+  vehicule: 1
+  misecirc: 1
+  tues: 1
+  hospitalises: 1
+  legers: 1
+  indemnes: 1
