@@ -18,15 +18,19 @@ namespace :import do
     csv.each do |row|
       row = row.to_hash.with_indifferent_access
       if Accident.exists?(:numac => row[:numac])
+        # Get the vehicule categorie (we have our own group)
+        categorie_vehicule = get_categrie_vehicule(row[:vehicule])
         Detail.create!( :hospitalises => row[:hospitalises],
                         :indemnes => row[:indemnes],
                         :legers => row[:legers],
                         :misecirc => row[:misecirc],
                         :numac => row[:numac],
                         :tues => row[:tues],
-                        :vehicule => get_categrie_vehicule(row[:vehicule]))
+                        :vehicule => categorie_vehicule)
 
-
+        # update accident model with the vehicule categorie
+        accident = Accident.where(:numac => row[:numac]).first
+        accident.update_attribute("vehicule_#{categorie_vehicule.to_s}", true)
       end
 
     end
