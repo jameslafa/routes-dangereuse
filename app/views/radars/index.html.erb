@@ -2,26 +2,16 @@
 
 <table>
   <tr>
-    <th>Type</th>
-    <th>Latitude</th>
-    <th>Longitude</th>
-    <th></th>
-    <th></th>
+    <th>Categorie</th>
+    <th>GPS</th>
     <th></th>
   </tr>
 
 <% @radars.each do |radar| %>
   <tr>
-    <td><%= radar.type %></td>
-    <td><%= radar.latitude %></td>
-    <td><%= radar.longitude %></td>
-    <td><%= link_to 'Show', radar %></td>
-    <td><%= link_to 'Edit', edit_radar_path(radar) %></td>
-    <td><%= link_to 'Destroy', radar, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= radar.categorie %></td>
+    <td><%= radar.latitude %> , <%= radar.longitude %></td>
+    <td><a href="https://maps.google.com/maps?q=<%= radar.latitude %>,<%= radar.longitude %>">map</a></td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Radar', new_radar_path %>

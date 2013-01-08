@@ -44,7 +44,7 @@ namespace :import do
       row = row.to_hash.with_indifferent_access
       Radar.create!(:latitude => row[:latitude],
                     :longitude => row[:longitude],
-                    :type => row[:type])
+                    :categorie => row[:categorie])
     end
   end
 
