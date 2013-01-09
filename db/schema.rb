@@ -37,13 +37,9 @@ ActiveRecord::Schema.define(:version => 20130108210135) do
     t.boolean  "vehicule_4"
     t.boolean  "vehicule_5"
     t.boolean  "vehicule_6"
-    t.boolean  "moins_5"
-    t.boolean  "plus_5"
   end
 
-  add_index "accidents", ["moins_5"], :name => "index_accidents_on_moins_5"
   add_index "accidents", ["numac"], :name => "index_accidents_on_numac", :unique => true
-  add_index "accidents", ["plus_5"], :name => "index_accidents_on_plus_5"
   add_index "accidents", ["vehicule_1"], :name => "index_details_on_vehicule_1"
   add_index "accidents", ["vehicule_2"], :name => "index_details_on_vehicule_2"
   add_index "accidents", ["vehicule_3"], :name => "index_details_on_vehicule_3"

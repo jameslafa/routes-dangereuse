@@ -1,9 +1,7 @@
 RoutesDangereuses::Application.routes.draw do
   #resources :radars
   match 'radars/categorie/:categorie(.:format)' => 'radars#index'
-
-  resources :details
-
+  match 'accident/:id(.:format)' => 'details#show'
 
   resources :accidents
 

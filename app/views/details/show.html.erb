@@ -2,39 +2,102 @@
 
 <p>
   <b>Numac:</b>
-  <%= @detail.numac %>
+  <%= @accident.numac %>
+</p>
+<p>
+  <b>Codeinsee:</b>
+  <%= @accident.codeinsee %>
 </p>
 
 <p>
-  <b>Vehicule:</b>
-  <%= @detail.vehicule %>
+  <b>Ville:</b>
+  <%= @accident.ville %>
 </p>
 
 <p>
-  <b>Misecirc:</b>
-  <%= @detail.misecirc %>
+  <b>Lumiere:</b>
+  <%= @accident.lumiere %>
+</p>
+
+<p>
+  <b>Intersection:</b>
+  <%= @accident.intersection %>
+</p>
+
+<p>
+  <b>Atmospherique:</b>
+  <%= @accident.atmospherique %>
+</p>
+
+<p>
+  <b>Collision:</b>
+  <%= @accident.collision %>
+</p>
+
+<p>
+  <b>Route:</b>
+  <%= @accident.route %>
 </p>
 
 <p>
   <b>Tues:</b>
-  <%= @detail.tues %>
+  <%= @accident.tues %>
 </p>
 
 <p>
   <b>Hospitalises:</b>
-  <%= @detail.hospitalises %>
+  <%= @accident.hospitalises %>
 </p>
 
 <p>
-  <b>Legers:</b>
-  <%= @detail.legers %>
+  <b>Leger:</b>
+  <%= @accident.leger %>
 </p>
 
 <p>
   <b>Indemnes:</b>
-  <%= @detail.indemnes %>
+  <%= @accident.indemnes %>
 </p>
 
+<p>
+  <b>Gravite:</b>
+  <%= @accident.gravite %>
+</p>
 
-<%= link_to 'Edit', edit_detail_path(@detail) %> |
-<%= link_to 'Back', details_path %>
+<p>
+  <b>Gps:</b>
+  <%= @accident.latitude %>,<%= @accident.longitude %> <a href="https://maps.google.com/maps?q=<%= @accident.latitude %>,<%= @accident.longitude %>">map</a>
+</p>
+
+<% @vehicules.each do |vehicule| %>
+<hr/>
+<p>
+  <b>Type Vehicule:</b>
+  <%= vehicule.vehicule %>
+</p>
+
+<p>
+  <b>Mise en circulation:</b>
+  <%= vehicule.misecirc %>
+</p>
+
+<p>
+  <b>Tues:</b>
+  <%= vehicule.tues %>
+</p>
+
+<p>
+  <b>Hospitalises:</b>
+  <%= vehicule.hospitalises %>
+</p>
+
+<p>
+  <b>Legers:</b>
+  <%= vehicule.legers %>
+</p>
+
+<p>
+  <b>Indemnes:</b>
+  <%= vehicule.indemnes %>
+</p>
+<% end %>
