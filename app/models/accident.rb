@@ -6,7 +6,8 @@ class Accident < ActiveRecord::Base
                   :vehicule_5, :vehicule_6
 
   def as_json(options={})
-    result = super({ :only => [:numac, :latitude, :longitude] }.merge(options))
+    result = super({ :only => [:numac, :latitude, :longitude, :gravite] }.merge(options))
+    result[:gravite] = self.gravite.to_f
     result
   end
 end
