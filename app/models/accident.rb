@@ -6,7 +6,7 @@ class Accident < ActiveRecord::Base
                   :vehicule_5, :vehicule_6
 
   def as_json(options={})
-    result = super({ :except => [:created_at, :updated_at, :id, :vehicule_1, :vehicule_2, :vehicule_3, :vehicule_4, :vehicule_5, :vehicule_6] }.merge(options))
+    result = super({ :only => [:numac, :latitude, :longitude] }.merge(options))
     result
   end
 end

@@ -1,5 +1,6 @@
 <h1>Listing accidents</h1>
 
+Total : <%= @accidents.size %>
 <table>
   <tr>
     <th>Numac</th>
@@ -17,8 +18,6 @@
     <th>Gravite</th>
     <th>Latitude</th>
     <th>Longitude</th>
-    <th></th>
-    <th></th>
     <th></th>
   </tr>
 
@@ -39,13 +38,7 @@
     <td><%= accident.gravite %></td>
     <td><%= accident.latitude %></td>
     <td><%= accident.longitude %></td>
-    <td><%= link_to 'Show', accident %></td>
-    <td><%= link_to 'Edit', edit_accident_path(accident) %></td>
-    <td><%= link_to 'Destroy', accident, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><a href="https://maps.google.com/maps?q=<%= accident.latitude %>,<%= accident.longitude %>">map</a></td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Accident', new_accident_path %>

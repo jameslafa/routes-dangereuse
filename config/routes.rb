@@ -1,9 +1,9 @@
 RoutesDangereuses::Application.routes.draw do
   #resources :radars
   match 'radars/categorie/:categorie(.:format)' => 'radars#index'
-  match 'accident/:id(.:format)' => 'details#show'
+  match 'accidents/list(.:format)' => 'accidents#index'
+  match 'accidents/:id(.:format)' => 'details#show'
 
-  resources :accidents
 
 
   # The priority is based upon order of creation:

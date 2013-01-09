@@ -30,7 +30,7 @@ namespace :import do
 
         # update accident model with the vehicule categorie
         accident = Accident.where(:numac => row[:numac]).first
-        accident.update_attribute("vehicule_#{categorie_vehicule.to_s}", true)
+        accident.update_attribute("vehicule_#{categorie_vehicule.to_s}", 1)
       end
 
     end

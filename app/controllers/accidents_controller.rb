@@ -2,82 +2,46 @@ class AccidentsController < ApplicationController
   # GET /accidents
   # GET /accidents.json
   def index
-    @accidents = Accident.all
+    conditions = {}
+    available_parameters = [:lumiere, :intersection, :atmospherique, :route, :collision, :tues]
+
+    # Loop on every requestable parameters and add it to the request condition
+    available_parameters.each do |param|
+      conditions[param] = params[param] if params.has_key?(param)
+    end
+
+    # Add the vehicule condition
+    vehicule_condition = ""
+    if params.has_key?(:vehicules)
+      available_vehicule_types = [1..6]
+
+
+      if params[:vehicules].kind_of?(Array)
+        params[:vehicules].each do |vehicule_type|
+          if !available_vehicule_types.include?(vehicule_type)
+            vehicule_condition = vehicule_condition + " OR " if !vehicule_condition.empty?
+            vehicule_condition = vehicule_condition + "vehicule_" + vehicule_type + " = 1"
+          end
+        end
+      else
+        vehicule_condition = "vehicule_" + params[:vehicules] + " = 1"
+      end
+    end
+
+    if vehicule_condition.empty?
+      @accidents = Accident.where(conditions)
+    else
+      @accidents = Accident.where(conditions).where(vehicule_condition)
+    end
+
+    @result = {
+      :count => @accidents.size,
+      :data => @accidents
+    }
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @accidents }
-    end
-  end
-
-  # GET /accidents/1
-  # GET /accidents/1.json
-  def show
-    @accident = Accident.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @accident }
-    end
-  end
-
-  # GET /accidents/new
-  # GET /accidents/new.json
-  def new
-    @accident = Accident.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @accident }
-    end
-  end
-
-  # GET /accidents/1/edit
-  def edit
-    @accident = Accident.find(params[:id])
-  end
-
-  # POST /accidents
-  # POST /accidents.json
-  def create
-    @accident = Accident.new(params[:accident])
-
-    respond_to do |format|
-      if @accident.save
-        format.html { redirect_to @accident, notice: 'Accident was successfully created.' }
-        format.json { render json: @accident, status: :created, location: @accident }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @accident.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /accidents/1
-  # PUT /accidents/1.json
-  def update
-    @accident = Accident.find(params[:id])
-
-    respond_to do |format|
-      if @accident.update_attributes(params[:accident])
-        format.html { redirect_to @accident, notice: 'Accident was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @accident.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /accidents/1
-  # DELETE /accidents/1.json
-  def destroy
-    @accident = Accident.find(params[:id])
-    @accident.destroy
-
-    respond_to do |format|
-      format.html { redirect_to accidents_url }
-      format.json { head :no_content }
+      format.json { render json: @result }
     end
   end
 end

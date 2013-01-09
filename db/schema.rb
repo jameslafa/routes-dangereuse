@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130108210135) do
+ActiveRecord::Schema.define(:version => 20130109223956) do
 
   create_table "accidents", :force => true do |t|
     t.integer  "numac"
@@ -31,12 +31,12 @@ ActiveRecord::Schema.define(:version => 20130108210135) do
     t.float    "longitude"
     t.datetime "created_at",                                  :null => false
     t.datetime "updated_at",                                  :null => false
-    t.boolean  "vehicule_1"
-    t.boolean  "vehicule_2"
-    t.boolean  "vehicule_3"
-    t.boolean  "vehicule_4"
-    t.boolean  "vehicule_5"
-    t.boolean  "vehicule_6"
+    t.integer  "vehicule_1"
+    t.integer  "vehicule_2"
+    t.integer  "vehicule_3"
+    t.integer  "vehicule_4"
+    t.integer  "vehicule_5"
+    t.integer  "vehicule_6"
   end
 
   add_index "accidents", ["numac"], :name => "index_accidents_on_numac", :unique => true
