@@ -4,12 +4,12 @@ class ChangeVehiculesDataTypeInAccidents < ActiveRecord::Migration
   end
 
   def up
-    alter_column :accidents, :vehicule_1, :integer, { true => 1, "else" => nil }, true
-    alter_column :accidents, :vehicule_2, :integer, { true => 1, "else" => nil }, true
-    alter_column :accidents, :vehicule_3, :integer, { true => 1, "else" => nil }, true
-    alter_column :accidents, :vehicule_4, :integer, { true => 1, "else" => nil }, true
-    alter_column :accidents, :vehicule_5, :integer, { true => 1, "else" => nil }, true
-    alter_column :accidents, :vehicule_6, :integer, { true => 1, "else" => nil }, true
+    alter_column :accidents, :vehicule_1, :integer, :default=>nil
+    alter_column :accidents, :vehicule_2, :integer, :default=>nil
+    alter_column :accidents, :vehicule_3, :integer, :default=>nil
+    alter_column :accidents, :vehicule_4, :integer, :default=>nil
+    alter_column :accidents, :vehicule_5, :integer, :default=>nil
+    alter_column :accidents, :vehicule_6, :integer, :default=>nil
   end
 
   def down
