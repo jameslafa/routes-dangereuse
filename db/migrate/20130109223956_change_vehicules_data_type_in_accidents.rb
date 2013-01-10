@@ -1,4 +1,8 @@
 class ChangeVehiculesDataTypeInAccidents < ActiveRecord::Migration
+  class << self
+    include AlterColumn
+  end
+
   def up
     alter_column :accidents, :vehicule_1, :integer, { true => 1, "else" => nil }, true
     alter_column :accidents, :vehicule_2, :integer, { true => 1, "else" => nil }, true
