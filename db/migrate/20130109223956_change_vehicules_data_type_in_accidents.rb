@@ -1,15 +1,34 @@
 class ChangeVehiculesDataTypeInAccidents < ActiveRecord::Migration
-  class << self
-    include AlterColumn
-  end
-
   def up
-    alter_column :accidents, :vehicule_1, :integer, :default=>nil
-    alter_column :accidents, :vehicule_2, :integer, :default=>nil
-    alter_column :accidents, :vehicule_3, :integer, :default=>nil
-    alter_column :accidents, :vehicule_4, :integer, :default=>nil
-    alter_column :accidents, :vehicule_5, :integer, :default=>nil
-    alter_column :accidents, :vehicule_6, :integer, :default=>nil
+    execute "ALTER TABLE accidents ALTER COLUMN vehicule_1 TYPE integer
+              USING CASE vehicule_1
+              WHEN true THEN 1
+              ELSE 0 END;"
+
+    execute "ALTER TABLE accidents ALTER COLUMN vehicule_2 TYPE integer
+              USING CASE vehicule_2
+              WHEN true THEN 1
+              ELSE 0 END;"
+
+    execute "ALTER TABLE accidents ALTER COLUMN vehicule_3 TYPE integer
+              USING CASE vehicule_3
+              WHEN true THEN 1
+              ELSE 0 END;"
+
+    execute "ALTER TABLE accidents ALTER COLUMN vehicule_4 TYPE integer
+              USING CASE vehicule_4
+              WHEN true THEN 1
+              ELSE 0 END;"
+
+    execute "ALTER TABLE accidents ALTER COLUMN vehicule_5 TYPE integer
+              USING CASE vehicule_5
+              WHEN true THEN 1
+              ELSE 0 END;"
+
+    execute "ALTER TABLE accidents ALTER COLUMN vehicule_6 TYPE integer
+              USING CASE vehicule_6
+              WHEN true THEN 1
+              ELSE 0 END;"
   end
 
   def down
