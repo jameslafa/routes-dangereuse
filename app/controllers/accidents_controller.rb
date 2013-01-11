@@ -31,7 +31,7 @@ class AccidentsController < ApplicationController
     if vehicule_condition.empty?
       @accidents = Accident.where(conditions)
     else
-      @accidents = Accident.where(conditions).where(vehicule_condition)
+      @accidents = Accident.where(conditions).where(vehicule_condition).order("numac ASC")
     end
 
     @result = {
