@@ -1,0 +1,212 @@
+html
+  height: 100%
+
+body
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif
+  color: #48453f
+  height: 100%
+  margin: 0
+  padding: 0
+
+a:active
+  outline: none
+
+*:focus
+  -moz-outline-style: none
+
+#map
+  height: 100%
+  margin-top: 40px
+  width: 100%
+  z-index: 1
+
+.header
+  background: image-url("menu_bg.png") 0 0 repeat-x
+  height: 52px
+  left: 0
+  position: absolute
+  top: 0
+  width: 100%
+  z-index: 99
+
+  .button
+    background-position: 0 0
+    background-repeat: no-repeat
+    cursor: pointer
+    float: left
+    height: 52px
+    margin: 0
+    padding: 0
+
+    &:hover
+      background-position: 0 -104px
+
+    &:active, &.active
+      background-position: 0 -52px
+
+    &.criteres
+      background-image: image-url("button_criteres.png")
+      width: 105px
+
+    &.radars
+      background-image: image-url("button_radars.png")
+      width: 104px
+
+.menu-popup
+  position: absolute
+  width: 312px
+  z-index: 50
+
+  &.criteres
+    background: image-url("popup_criteres.png") 0 0 no-repeat
+    display: none
+    height: 584px
+    left: 18px
+    top: 35px
+
+    .content
+      height: 503px
+      margin-top: 23px
+      margin-left: 10px
+      width: 289px
+
+      .section-critere-title
+        border-bottom: 1px solid #ddd
+        cursor: pointer
+        font-size: 14px
+        font-weight: bold
+        line-height: 34px
+
+        .critere-count
+          background-color: #e4b354
+          border-radius: 10px
+          color: white
+          display: inline-block
+          font-size: 12px
+          font-weight: normal
+          line-height: 14px
+          margin-left: 10px
+          padding: 1px 7px 3px 7px
+
+          &.empty
+            display: none
+
+        .picto
+          background-image: image-url("sprite_pictos_popup.png")
+          background-repeat: no-repeat
+          float: left
+          height: 28px
+          margin: 3px 5px
+          width: 28px
+
+          &.crit-collision
+            background-position: 0 0
+          &.crit-intersection
+            background-position: -38px 0
+          &.crit-luminosite
+            background-position: -76px 0
+          &.crit-meteo
+            background-position: -114px 0
+          &.crit-tues
+            background-position: -152px 0
+          &.crit-typevoie
+            background-position: -190px 0
+          &.crit-vehicule
+            background-position: -228px 0
+
+        &.ui-state-active
+          background-color: #444
+          color: white
+
+          .critere-count
+            background-color: white
+            color: #444
+
+          .picto
+            &.crit-collision
+              background-position: 0 -57px
+            &.crit-intersection
+              background-position: -38px -57px
+            &.crit-luminosite
+              background-position: -76px -57px
+            &.crit-meteo
+              background-position: -114px -57px
+            &.crit-tues
+              background-position: -152px -57px
+            &.crit-typevoie
+              background-position: -190px -57px
+            &.crit-vehicule
+              background-position: -228px -57px
+            &.rad-feurouge
+              background-position: -266px -57px
+            &.rad-pdslourds
+              background-position: -304px -57px
+            &.rad-radarfixe
+              background-position: -342px -57px
+            &.rad-troncon
+              background-position: -380px -57px
+
+      .section-criteres
+
+        .critere
+          border-bottom: 1px solid #ddd
+          clear: both
+          font-size: 12px
+          line-height: 25px
+          padding-left: 20px
+
+          input
+            float: right
+            margin: 5px 15px 0 0
+
+  .footer
+    bottom: 12px
+    height: 43px
+    left: 4px
+    position: absolute
+    width: 301px
+
+    .nb_accidents
+      color: white
+      display: block
+      float: left
+      font-size: 12px
+      line-height: 28px
+      margin-top: 8px
+      text-align: center
+      width: 163px
+
+    a
+      display: block
+
+      &.update
+        background-image: image-url("popup_criteres_refresh.png")
+        background-position: 0 0
+        background-repeat: no-repeat
+        float: right
+        height: 28px
+        margin-right: 6px
+        margin-top: 8px
+        width: 97px
+
+
+        &:hover
+          background-position: 0 -28px
+        &:active
+          background-position: 0 -58px
+
+      &.revert
+        background-image: image-url("popup_criteres_revert.png")
+        background-position: 0 0
+        background-repeat: no-repeat
+        float: left
+        height: 28px
+        margin-left: 6px
+        margin-top: 8px
+        width: 29px
+
+
+        &:hover
+          background-position: 0 -28px
+        &:active
+          background-position: 0 -58px

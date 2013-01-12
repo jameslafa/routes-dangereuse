@@ -3,11 +3,21 @@ class AccidentsController < ApplicationController
   # GET /accidents.json
   def index
     conditions = {}
-    available_parameters = [:lumiere, :intersection, :atmospherique, :route, :collision, :tues]
+    available_parameters = [:lumiere, :intersection, :atmospherique, :route, :collision]
 
     # Loop on every requestable parameters and add it to the request condition
     available_parameters.each do |param|
       conditions[param] = params[param] if params.has_key?(param)
+    end
+
+    # Add the tues condition
+
+    if params.has_key?(:tues)
+      if params[:tues].include?("2")
+        conditions[:tues] = 2..100
+      else
+        conditions[:tues] = params[:tues]
+      end
     end
 
     # Add the vehicule condition
@@ -28,16 +38,30 @@ class AccidentsController < ApplicationController
       end
     end
 
-    if vehicule_condition.empty?
-      @accidents = Accident.where(conditions).order("numac ASC")
-    else
-      @accidents = Accident.where(conditions).where(vehicule_condition).order("numac ASC")
-    end
+    # If parameter count is set to true, we just need to count the result
+    if params[:count]
+      if vehicule_condition.empty?
+        count = Accident.where(conditions).count
+      else
+        count = Accident.where(conditions).where(vehicule_condition).count
+      end
 
-    @result = {
-      :count => @accidents.size,
-      :data => @accidents
-    }
+      @result = {
+        :count => count
+      }
+    # Else, we need to return all the results to display them
+    else
+      if vehicule_condition.empty?
+        @accidents = Accident.where(conditions)
+      else
+        @accidents = Accident.where(conditions).where(vehicule_condition)
+      end
+
+      @result = {
+        :count => @accidents.size,
+        :data => @accidents
+      }
+    end
 
     respond_to do |format|
       format.html # index.html.erb
