@@ -137,7 +137,8 @@ class Map
     _.each(@accidentData, (accident) =>
       @accidentMarkersData.push new google.maps.Marker(
             position: new google.maps.LatLng(accident.latitude,accident.longitude),
-            map: @map
+            map: @map,
+            icon: this.getAccidentMarkerImage(accident.gravite)
           )
     )
 
@@ -152,6 +153,18 @@ class Map
     )
     # Then empty the accidentMarkersData array
     @accidentMarkersData.length = 0
+
+  #
+  # Return the correct image depending how many people were killed in the accident
+  #
+  getAccidentMarkerImage: (gravite) ->
+    if gravite < 100
+      return '/assets/mark-acc-01.png'
+    else if gravite < 200
+      return '/assets/mark-acc-02.png'
+    else
+      return '/assets/mark-acc-03.png'
+
 
 
   ##########
@@ -215,7 +228,7 @@ $(document).ready ->
       $(".menu-popup.criteres").fadeIn("fast")
       $(this).addClass("active")
 
-    return false
+      return false
   )
 
   # Uncheck every checkbox to reinitilize criteria on refresh
