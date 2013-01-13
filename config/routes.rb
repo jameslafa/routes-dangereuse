@@ -1,7 +1,7 @@
 RoutesDangereuses::Application.routes.draw do
 
   # Radars
-  match 'radars/categorie/:categorie(.:format)' => 'radars#index'
+  match 'radars/list(.:format)' => 'radars#index'
   # Liste des accidents
   match 'accidents/list(.:format)' => 'accidents#index'
   # Detail d'un accident

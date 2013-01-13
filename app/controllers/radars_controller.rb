@@ -2,8 +2,8 @@ class RadarsController < ApplicationController
   # GET /radars
   # GET /radars.json
   def index
-    if params[:categorie] and ["1", "2", "3", "4"].include?(params[:categorie])
-      @radars = Radar.where(:categorie => params[:categorie])
+    if params.has_key? :category
+      @radars = Radar.where(:categorie => params[:category])
     else
       @radars = Radar.all
     end
