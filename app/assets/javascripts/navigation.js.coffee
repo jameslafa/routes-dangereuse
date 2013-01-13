@@ -147,7 +147,7 @@ class Map
     _.each(@accidentData, (accident) =>
       @heatmapData.push(
         location: new google.maps.LatLng(accident.latitude, accident.longitude)
-        weight: accident.gravite
+        weight: accident.tues
       )
     )
 
@@ -184,7 +184,7 @@ class Map
       marker = new google.maps.Marker(
                 position: new google.maps.LatLng(accident.latitude,accident.longitude),
                 map: @map,
-                icon: this.getAccidentMarkerImage(accident.gravite)
+                icon: this.getAccidentMarkerImage(accident.tues)
                 numac: accident.numac
               )
 
@@ -211,13 +211,14 @@ class Map
   #
   # Return the correct image depending how many people were killed in the accident
   #
-  getAccidentMarkerImage: (gravite) ->
-    if gravite < 100
-      return '/assets/mark-acc-01.png'
-    else if gravite < 200
-      return '/assets/mark-acc-02.png'
-    else
-      return '/assets/mark-acc-03.png'
+  getAccidentMarkerImage: (tues) ->
+    switch tues
+      when 0
+        return '/assets/mark-acc-01.png'
+      when 1
+        return '/assets/mark-acc-02.png'
+      else
+        return '/assets/mark-acc-03.png'
 
   #
   # Display the accident detail in an infoWindow
