@@ -15,55 +15,55 @@ class Map
     )
 
     @settings =
-      defaultZoomLevel: 14
+      defaultZoomLevel: 11
       defaultCenter:
         latitude: 48.856388 # Paris
         longitude: 2.350855 # Paris
-      zoomHeatmapToMarkers: 13
+      zoomHeatmapToMarkers: 12
       debug: true
 
     @labels =
       vehicules:
-        1 : "V&#233;lo"
-        2 : "Deux roues motoris&#233;"
-        3 : "V&#233;hicule l&#233;ger"
-        4 : "Autre"
-        5 : "Poids-lourd"
-        6 : "Transports en commun"
+        1 : "v&#233;lo"
+        2 : "deux roues motoris&#233;"
+        3 : "v&#233;hicule l&#233;ger"
+        4 : "autre"
+        5 : "poids-lourd"
+        6 : "transports en commun"
       lumiere:
-        1 : "Plein jour"
-        2 : "Cr&#233;puscule ou aube"
-        3 : "Nuit sans &#233;clairage public"
-        4 : "Nuit avec &#233;clairage public non allum&#233;"
-        5 : "Nuit avec &#233;clairage public allum&#233;"
+        1 : "plein jour"
+        2 : "cr&#233;puscule ou aube"
+        3 : "nuit sans &#233;clairage public"
+        4 : "nuit avec &#233;clairage public non allum&#233;"
+        5 : "nuit avec &#233;clairage public allum&#233;"
       atmospherique:
-        1 : "Normale"
-        2 : "Pluie l&#233;g&#232;re"
-        3 : "Pluie forte"
-        4 : "Neige - gr&#234;le"
-        5 : "Brouillard - fum&#233;é"
-        6 : "Vent fort - temp&#234;te"
-        7 : "Temps &#233;blouissant"
-        8 : "Temps couvert"
-        9 : "Autre"
+        1 : "normale"
+        2 : "pluie l&#233;g&#232;re"
+        3 : "pluie forte"
+        4 : "neige - gr&#234;le"
+        5 : "brouillard - fum&#233;é"
+        6 : "vent fort - temp&#234;te"
+        7 : "temps &#233;blouissant"
+        8 : "temps couvert"
+        9 : "autre"
       route :
-        1 : "Autoroute"
-        2 : "Route nationale"
-        3 : "Route d&#233;partementale"
-        4 : "Voie communale"
-        5 : "Hors r&#233;seau public"
-        6 : "Parc de stationnement"
-        9 : "Autre"
+        1 : "autoroute"
+        2 : "route nationale"
+        3 : "route d&#233;partementale"
+        4 : "voie communale"
+        5 : "hors r&#233;seau public"
+        6 : "parc de stationnement"
+        9 : "autre"
       intersection :
-        1 : "Hors intersection"
-        2 : "Intersection en X"
-        3 : "Intersection en T"
-        4 : "Intersection en T"
-        5 : "Intersection &#224; plus de 4 branches"
-        6 : "Giratoire"
-        7 : "Place"
-        8 : "Passage &#224; niveau"
-        9 : "Autre intersection"
+        1 : "hors intersection"
+        2 : "intersection en X"
+        3 : "intersection en T"
+        4 : "intersection en T"
+        5 : "intersection &#224; plus de 4 branches"
+        6 : "giratoire"
+        7 : "place"
+        8 : "passage &#224; niveau"
+        9 : "autre intersection"
 
 
   # Initilize and display the map
@@ -170,7 +170,14 @@ class Map
       # Initiliaze the heatmap
       @heatmap = new google.maps.visualization.HeatmapLayer(
         data: @heatmapData
-        radius: 40
+        radius: 20
+        gradient : [
+          'rgba(255, 0, 0, 0)'
+          'rgba(255, 210, 0, 1)'
+          'rgba(255, 153, 0, 1)'
+          'rgba(255, 102, 0, 1)'
+          'rgba(255, 0, 0, 1)'
+        ]
       )
       @heatmap.setMap(@map)
 
@@ -250,7 +257,7 @@ class Map
       success: (data) =>
         content = "<h2>Accident &#224; " + data.accident.ville + "</h2><div class='content'>"
         if data.accident.tues < 2
-          content += "<strong>Victimes: </strong>" + data.accident.tues + " tué<br/>"
+          content += "<strong>Victime: </strong>" + data.accident.tues + " tué<br/>"
         else
           content += "<strong>Victimes: </strong>" + data.accident.tues + " tués<br/>"
 
@@ -421,7 +428,7 @@ $(document).ready ->
         else if data.count == 1
           nb_accidents = "1 accident"
         else
-          nb_accidents = data.count + " accident"
+          nb_accidents = data.count + " accidents"
         $(".menu-popup.criteres .nb_accidents").text(nb_accidents)
     )
   )

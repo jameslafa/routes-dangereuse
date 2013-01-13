@@ -26,9 +26,9 @@
       <p>Cette application a &#233;t&#233; r&#233;alis&#233;e par <a href="http://askmedia.fr/blog/" target="_blank">Askmedia <span class="anchor"></span></a> pour <a href="http://www.leparisien.fr/" target="_blank">leparisien.fr <span class="anchor"></span></a></p>
 
       <p><strong>Traitement des donn&#233;es et conception de l'application:</strong><br/>
-      St&#233;phane Saulnier<br/>
-      Marie Coussin<br/>
-      Mathilde Boireau</p>
+      <a href="http://www.twitter.com/ssaulnier_" target="_blank">St&#233;phane Saulnier<span class="anchor"></span></a><br/>
+      <a href="http://www.twitter.com/mariecoussin" target="_blank">Marie Coussin <span class="anchor"></span></a><br/>
+      <a href="http://www.twitter.com/mathildeboireau" target="_blank">Mathilde Boireau<span class="anchor"></span></a></p>
 
       <p><strong>Design:</strong> <a href="http://www.jetkolorz.net" target="_blank">Hadrien Pennes <span class="anchor"></span></a></p>
 
@@ -41,6 +41,47 @@
 <div class="menu-popup criteres">
   <div class="content">
     <form class="form-criteres">
+      <div class="section-critere-title"><div class="picto crit-tues"></div>Nombre de tu&#233;s<div class="critere-count empty"></div></div>
+      <div class="section-criteres">
+        <div class="critere">Aucun <input type="checkbox" name="tues[]" value="0"></div>
+        <div class="critere">Un tué <input type="checkbox" name="tues[]" value="1"></div>
+        <div class="critere">Plus d'un tué <input type="checkbox" name="tues[]" value="2"></div>
+      </div>
+
+      <div class="section-critere-title"><div class="picto crit-meteo"></div>Conditions m&#233;t&#233;o<div class="critere-count empty"></div></div>
+      <div class="section-criteres">
+        <div class="critere">Normale <input type="checkbox" name="atmospherique[]" value="1"></div>
+        <div class="critere">Pluie l&#233;g&#232;re <input type="checkbox" name="atmospherique[]" value="2"></div>
+        <div class="critere">Pluie forte <input type="checkbox" name="atmospherique[]" value="3"></div>
+        <div class="critere">Neige / gr&#234;le <input type="checkbox" name="atmospherique[]" value="4"></div>
+        <div class="critere">Brouillard / fum&#233;e <input type="checkbox" name="atmospherique[]" value="5"></div>
+        <div class="critere">Vent fort / temp&#234;te <input type="checkbox" name="atmospherique[]" value="6"></div>
+        <div class="critere">Temps &#233;blouissant <input type="checkbox" name="atmospherique[]" value="7"></div>
+        <div class="critere">Temps couvert <input type="checkbox" name="atmospherique[]" value="8"></div>
+        <div class="critere">Autres <input type="checkbox" name="atmospherique[]" value="9"></div>
+      </div>
+
+      <div class="section-critere-title"><div class="picto crit-vehicule"></div>Cat&#233;gories de v&#233;hicule<div class="critere-count empty"></div></div>
+      <div class="section-criteres">
+        <div class="critere">V&#233;lo <input type="checkbox" name="vehicules[]" value="1"></div>
+        <div class="critere">Deux roues motoris&#233; <input type="checkbox" name="vehicules[]" value="2"></div>
+        <div class="critere">V&#233;hicule l&#233;ger <input type="checkbox" name="vehicules[]" value="3"></div>
+        <div class="critere">Autres <input type="checkbox" name="vehicules[]" value="4"></div>
+        <div class="critere">Poids-lourd <input type="checkbox" name="vehicules[]" value="5"></div>
+        <div class="critere">Transports en commun <input type="checkbox" name="vehicules[]" value="6"></div>
+      </div>
+
+      <div class="section-critere-title"><div class="picto crit-typevoie"></div>Types de voies<div class="critere-count empty"></div></div>
+      <div class="section-criteres">
+        <div class="critere">Autoroute <input type="checkbox" name="route[]" value="1"></div>
+        <div class="critere">Route nationale <input type="checkbox" name="route[]" value="2"></div>
+        <div class="critere">Route d&#233;partementale <input type="checkbox" name="route[]" value="3"></div>
+        <div class="critere">Voie communale <input type="checkbox" name="route[]" value="4"></div>
+        <div class="critere">Hors r&#233;seau public <input type="checkbox" name="route[]" value="5"></div>
+        <div class="critere">Parc de stationnement <input type="checkbox" name="route[]" value="6"></div>
+        <div class="critere">Autres <input type="checkbox" name="route[]" value="9"></div>
+      </div>
+
       <div class="section-critere-title"><div class="picto crit-luminosite"></div>Luminosit&#233;<div class="critere-count empty"></div></div>
       <div class="section-criteres">
         <div class="critere">Plein jour <input type="checkbox" name="lumiere[]" value="1"></div>
@@ -48,6 +89,17 @@
         <div class="critere">Nuit sans &#233;clairage public <input type="checkbox" name="lumiere[]" value="3"></div>
         <div class="critere">Nuit avec &#233;clairage public non allum&#233; <input type="checkbox" name="lumiere[]" value="4"></div>
         <div class="critere">Nuit avec &#233;clairage public allum&#233; <input type="checkbox" name="lumiere[]" value="5"></div>
+      </div>
+
+      <div class="section-critere-title"><div class="picto crit-collision"></div>Type de collision<div class="critere-count empty"></div></div>
+      <div class="section-criteres">
+        <div class="critere">Deux v&#233;hicules - frontale <input type="checkbox" name="collision[]" value="1"></div>
+        <div class="critere">Deux v&#233;hicules – par l'arri&#232;re <input type="checkbox" name="collision[]" value="2"></div>
+        <div class="critere">Deux v&#233;hicules – par le c&#244;t&#233; <input type="checkbox" name="collision[]" value="3"></div>
+        <div class="critere">Trois v&#233;hicules et + / en cha&#238;ne <input type="checkbox" name="collision[]" value="4"></div>
+        <div class="critere">Trois v&#233;hicules et + / chocs multiples <input type="checkbox" name="collision[]" value="5"></div>
+        <div class="critere">Autres collisions <input type="checkbox" name="collision[]" value="6"></div>
+        <div class="critere">Sans collision <input type="checkbox" name="collision[]" value="7"></div>
       </div>
 
       <div class="section-critere-title"><div class="picto crit-intersection"></div>Intersection<div class="critere-count empty"></div></div>
@@ -60,60 +112,9 @@
         <div class="critere">Giratoire <input type="checkbox" name="intersection[]" value="6"></div>
         <div class="critere">Place <input type="checkbox" name="intersection[]" value="7"></div>
         <div class="critere">Passage &#224; niveau <input type="checkbox" name="intersection[]" value="8"></div>
-        <div class="critere">Autre intersection <input type="checkbox" name="intersection[]" value="9"></div>
+        <div class="critere">Autres intersections <input type="checkbox" name="intersection[]" value="9"></div>
       </div>
 
-      <div class="section-critere-title"><div class="picto crit-meteo"></div>Conditions m&#233;t&#233;o<div class="critere-count empty"></div></div>
-      <div class="section-criteres">
-        <div class="critere">Normale <input type="checkbox" name="atmospherique[]" value="1"></div>
-        <div class="critere">Pluie l&#233;g&#232;re <input type="checkbox" name="atmospherique[]" value="2"></div>
-        <div class="critere">Pluie forte <input type="checkbox" name="atmospherique[]" value="3"></div>
-        <div class="critere">Neige - gr&#234;le <input type="checkbox" name="atmospherique[]" value="4"></div>
-        <div class="critere">Brouillard - fum&#233;é <input type="checkbox" name="atmospherique[]" value="5"></div>
-        <div class="critere">Vent fort - temp&#234;te <input type="checkbox" name="atmospherique[]" value="6"></div>
-        <div class="critere">Temps &#233;blouissant <input type="checkbox" name="atmospherique[]" value="7"></div>
-        <div class="critere">Temps couvert <input type="checkbox" name="atmospherique[]" value="8"></div>
-        <div class="critere">Autre <input type="checkbox" name="atmospherique[]" value="9"></div>
-      </div>
-
-      <div class="section-critere-title"><div class="picto crit-typevoie"></div>Types de voies<div class="critere-count empty"></div></div>
-      <div class="section-criteres">
-        <div class="critere">Autoroute <input type="checkbox" name="route[]" value="1"></div>
-        <div class="critere">Route nationale <input type="checkbox" name="route[]" value="2"></div>
-        <div class="critere">Route d&#233;partementale <input type="checkbox" name="route[]" value="3"></div>
-        <div class="critere">Voie communale <input type="checkbox" name="route[]" value="4"></div>
-        <div class="critere">Hors r&#233;seau public <input type="checkbox" name="route[]" value="5"></div>
-        <div class="critere">Parc de stationnement <input type="checkbox" name="route[]" value="6"></div>
-        <div class="critere">Autre <input type="checkbox" name="route[]" value="9"></div>
-      </div>
-
-      <div class="section-critere-title"><div class="picto crit-tues"></div>Nombre de tu&#233;s<div class="critere-count empty"></div></div>
-      <div class="section-criteres">
-        <div class="critere">Aucun <input type="checkbox" name="tues[]" value="0"></div>
-        <div class="critere">Un mort <input type="checkbox" name="tues[]" value="1"></div>
-        <div class="critere">Plus d'un mort <input type="checkbox" name="tues[]" value="2"></div>
-      </div>
-
-      <div class="section-critere-title"><div class="picto crit-vehicule"></div>Cat&#233;gories de v&#233;hicules<div class="critere-count empty"></div></div>
-      <div class="section-criteres">
-        <div class="critere">V&#233;lo <input type="checkbox" name="vehicules[]" value="1"></div>
-        <div class="critere">Deux roues motoris&#233; <input type="checkbox" name="vehicules[]" value="2"></div>
-        <div class="critere">V&#233;hicule l&#233;ger <input type="checkbox" name="vehicules[]" value="3"></div>
-        <div class="critere">Autre <input type="checkbox" name="vehicules[]" value="4"></div>
-        <div class="critere">Poids-lourd <input type="checkbox" name="vehicules[]" value="5"></div>
-        <div class="critere">Transports en commun <input type="checkbox" name="vehicules[]" value="6"></div>
-      </div>
-
-      <div class="section-critere-title"><div class="picto crit-collision"></div>Collisions<div class="critere-count empty"></div></div>
-      <div class="section-criteres">
-        <div class="critere">Deux v&#233;hicules - frontale <input type="checkbox" name="collision[]" value="1"></div>
-        <div class="critere">Deux v&#233;hicules – par l'arri&#232;re <input type="checkbox" name="collision[]" value="2"></div>
-        <div class="critere">Deux v&#233;hicules – par le cot&#233; <input type="checkbox" name="collision[]" value="3"></div>
-        <div class="critere">Trois v&#233;hicules et + – en cha&#238;ne <input type="checkbox" name="collision[]" value="4"></div>
-        <div class="critere">Trois v&#233;hicules et + - chocs multiples <input type="checkbox" name="collision[]" value="5"></div>
-        <div class="critere">Autre collision <input type="checkbox" name="collision[]" value="6"></div>
-        <div class="critere">Sans collision <input type="checkbox" name="collision[]" value="7"></div>
-      </div>
     </form>
   </div>
   <div class="popup-footer">
@@ -142,5 +143,5 @@
 <div id="map"></div>
 <div class="footer">
   <a class="sources" href="#">Sources et mentions l&#233;gales</a>
-  <a class="copy" href="http://www.leparisien.fr" target="_blank">&copy; 2013 - Le parisien Magazine</a>
+  <a class="copy" href="http://www.leparisien.fr" target="_blank">&copy; 2013 - Le parisien</a>
 </div>

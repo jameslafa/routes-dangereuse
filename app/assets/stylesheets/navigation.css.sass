@@ -91,7 +91,7 @@ a:active
 .menu-popup
   position: absolute
   width: 312px
-  z-index: 50
+  z-index: 100
 
   &.criteres
     background: image-url("popup_criteres.png") 0 0 no-repeat
@@ -341,19 +341,24 @@ a:active
   border-radius: 10px
   color: white
   font-size: 12px
-  min-width: 400px
+  width: 500px
 
   h2
     border-bottom: 1px solid #343332
     box-shadow: 0 1px 0 0 rgba(255,255,255,0.2)
-    font-size: 14px
+    font-size: 15px
     font-weight: bold
     margin: 0
     padding: 5px 10px
 
   .content
+    color: #eee
     padding: 5px 10px
-    line-height: 17px
+    font-size: 14px
+    line-height: 22px
+
+    strong
+      color: #fff
 
 .credits
   background: image-url("source_bg.png") 0 -130px repeat-x
@@ -416,7 +421,7 @@ a:active
   .text
     color: #4d4d4d
     font-size: 13px
-    line-height: 18px
+    line-height: 16px
     font-weight: normal
 
     .left-col
@@ -443,6 +448,9 @@ a:active
     .tips
       font-size: 11.5px
       font-style:italic
+
+    sup
+      vertical-align: top
 
 
 
