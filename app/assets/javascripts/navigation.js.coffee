@@ -329,6 +329,20 @@ $(document).ready ->
       return false
   )
 
+  # Activate click on critere menu to display and hide the critere popup
+  $(".header .radars").live("click", (event) ->
+    event.preventDefault()
+
+    if $(this).hasClass("active")
+      $(".menu-popup.radars").fadeOut("fast")
+      $(this).removeClass("active")
+    else
+      $(".menu-popup.radars").fadeIn("fast")
+      $(this).addClass("active")
+
+      return false
+  )
+
   # Uncheck every checkbox to reinitilize criteria on refresh
   $(".menu-popup input:checked").attr("checked", false)
 

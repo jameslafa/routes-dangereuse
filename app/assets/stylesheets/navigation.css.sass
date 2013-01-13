@@ -167,54 +167,69 @@ a:active
             float: right
             margin: 5px 15px 0 0
 
-  .popup-footer
-    bottom: 12px
-    height: 43px
-    left: 4px
-    position: absolute
-    width: 301px
+    .popup-footer
+      bottom: 12px
+      height: 43px
+      left: 4px
+      position: absolute
+      width: 301px
 
-    .nb_accidents
-      color: white
-      display: block
-      float: left
-      font-size: 12px
-      line-height: 28px
-      margin-top: 8px
-      text-align: center
-      width: 163px
-
-    a
-      display: block
-
-      &.update
-        background-image: image-url("popup_criteres_refresh.png")
-        background-position: 0 0
-        background-repeat: no-repeat
-        float: right
-        height: 28px
-        margin-right: 6px
-        margin-top: 8px
-        width: 97px
-
-
-        &:hover
-          background-position: 0 -28px
-        &:active
-          background-position: 0 -58px
-
-      &.revert
-        background-image: image-url("popup_criteres_revert.png")
-        background-position: 0 0
-        background-repeat: no-repeat
+      .nb_accidents
+        color: white
+        display: block
         float: left
-        height: 28px
-        margin-left: 6px
+        font-size: 12px
+        line-height: 28px
         margin-top: 8px
-        width: 29px
+        text-align: center
+        width: 163px
+
+      a
+        display: block
+
+        &.update
+          background-image: image-url("popup_criteres_refresh.png")
+          background-position: 0 0
+          background-repeat: no-repeat
+          float: right
+          height: 28px
+          margin-right: 6px
+          margin-top: 8px
+          width: 97px
 
 
-        &:hover
-          background-position: 0 -28px
-        &:active
-          background-position: 0 -58px
+          &:hover
+            background-position: 0 -28px
+          &:active
+            background-position: 0 -58px
+
+        &.revert
+          background-image: image-url("popup_criteres_revert.png")
+          background-position: 0 0
+          background-repeat: no-repeat
+          float: left
+          height: 28px
+          margin-left: 6px
+          margin-top: 8px
+          width: 29px
+
+
+          &:hover
+            background-position: 0 -28px
+          &:active
+            background-position: 0 -58px
+
+  &.radars
+    background: image-url("popup_radars.png") 0 0 no-repeat
+    display: none
+    height: 205px
+    left: 117px
+    top: 35px
+
+    .content
+      height: 503px
+      margin-top: 23px
+      margin-left: 10px
+      width: 289px
+
+
