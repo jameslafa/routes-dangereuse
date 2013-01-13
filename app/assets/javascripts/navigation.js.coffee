@@ -106,20 +106,21 @@ class Map
 
     this.debug("Map initialized")
 
-  # Update data depending criterias
-  updateAccidents: (citerias) ->
+  # Update data depending accident criterias
+  updateAccidents: (criterias) ->
     $.ajax(
-            url: "/accidents/list.json"
-            data: citerias
-            success: (data) =>
-              this.debug("Accident data updated with success")
+      url: "/accidents/list.json"
+      data: criterias
+      success: (data) =>
+        this.debug("Accident data updated with success")
 
-              @accidentData = data.data
-              this.clearAccidentMarkers()
-              this.clearAccidentHeatmap()
-              this.updateDisplay(true)
+        @accidentData = data.data
+        this.clearAccidentMarkers()
+        this.clearAccidentHeatmap()
+        this.updateDisplay(true)
     )
 
+  # Update display depending zoom value
   updateDisplay: (forceRefresh = false) ->
     if @map.getZoom() > @settings.zoomHeatmapToMarkers # need to display markers
       if forceRefresh or @currentView != "markers"
@@ -130,6 +131,15 @@ class Map
         this.clearAccidentMarkers()
         this.displayAccidentHeatmap()
 
+  # Update data depending radars criterias
+  updateRadars: (criterias) ->
+    $.ajax(
+      url: "/radars/list.json"
+      data: criterias
+      success: (data) =>
+        this.debug("Radars data updated with success")
+        this.displayRadarsMarkers(data)
+    )
 
   ####################
   # ACCIDENT HEATMAP #
@@ -272,23 +282,23 @@ class Map
   #
   # Add the radar on the list depending the categorie
   #
-  displayRadarsMarkers: (categorie) ->
-    $.ajax "/radars/categorie/" + categorie + ".json",
-      success: (data) =>
-        if @radarsData?
-          this.clearRadarsMarkers()
-        else
-          # If radarsData doesn't exist, initilize it
-          @radarsData = []
+  displayRadarsMarkers: (data) ->
+    if @radarsData?
+      this.clearRadarsMarkers()
+    else
+      # If radarsData doesn't exist, initilize it
+      @radarsData = []
 
-        # Loop on the data we receive of json, and add it to the radarsData and the map
-        _.each(data.data, (radar) =>
-          marker = new google.maps.Marker(
-            position: new google.maps.LatLng(radar.latitude,radar.longitude),
-            map: @map
-          )
-          @radarsData.push(marker)
-        )
+    # Loop on the data we receive of json, and add it to the radarsData and the map
+    _.each(data.data, (radar) =>
+      marker = new google.maps.Marker(
+        position: new google.maps.LatLng(radar.latitude,radar.longitude),
+        map: @map,
+        icon: this.getRadarMarkerImage(radar.categorie)
+      )
+      @radarsData.push(marker)
+    )
+
 
   #
   # Remove every radars Markers from the map
@@ -301,6 +311,19 @@ class Map
     # Then empty the radarsData array
     @radarsData.length = 0
 
+  #
+  # Return the correct image depending how many people were killed in the accident
+  #
+  getRadarMarkerImage: (category) ->
+    switch category
+      when 1
+        return '/assets/mark-rad-fx.png'
+      when 2
+        return '/assets/mark-rad-fr.png'
+      when 3
+        return '/assets/mark-rad-pl.png'
+      when 4
+        return '/assets/mark-rad-tc.png'
 
   #########
   # UTILS #
@@ -315,7 +338,9 @@ $(document).ready ->
   application_map.initialize()
   application_map.updateAccidents()
 
+  #
   # Activate click on critere menu to display and hide the critere popup
+  #
   $(".header .criteres").live("click", (event) ->
     event.preventDefault()
 
@@ -331,7 +356,9 @@ $(document).ready ->
     return false
   )
 
-  # Activate click on critere menu to display and hide the critere popup
+  #
+  # Activate click on radars menu to display and hide the critere popup
+  #
   $(".header .radars").live("click", (event) ->
     event.preventDefault()
 
@@ -347,17 +374,23 @@ $(document).ready ->
     return false
   )
 
-  # Uncheck every checkbox to reinitilize criteria on refresh
+  #
+  #  Uncheck every checkbox to reinitilize criteria on refresh
+  #
   $(".menu-popup input:checked").attr("checked", false)
 
+  #
   # Initialize accordion insite critere popup
+  #
   $(".form-criteres").accordion(
     header: '.section-critere-title'
     active: 10
     autoHeight: false
   )
 
-  # Handle event on input check
+  #
+  # Handle event on input check on critere popup
+  #
   $(".menu-popup.criteres input").live("click", (event) ->
     # First, update the check criteria number
     nbCheckedInputs = $(this).parents(".section-criteres").find(":checked").length
@@ -388,18 +421,23 @@ $(document).ready ->
     )
   )
 
-  # Hanlde event in update button to update the map
+  #
+  # Hanlde event in update button on critere popup to update the map
+  #
   $(".menu-popup.criteres .update").live("click", (event) ->
     event.preventDefault()
     application_map.updateAccidents($(".menu-popup.criteres form").serializeArray())
     return false
   )
 
-  # Hanlde update on the revert button
+  #
+  # Hanlde update on the revert button on critere popup
+  #
   $(".menu-popup.criteres .revert").live("click", (event) ->
+    event.preventDefault()
     # We reinitialize the popup
     $(".menu-popup.criteres .section-critere-title .critere-count:not(.empty)").addClass("empty").text("")
-    $(".menu-popup input:checked").attr("checked", false)
+    $(".menu-popup.criteres input:checked").attr("checked", false)
     $( ".form-criteres" ).accordion( "option", "active", 0)
 
     # Now count results
@@ -418,7 +456,24 @@ $(document).ready ->
           nb_accidents = data.count + " accident"
         $(".menu-popup.criteres .nb_accidents").text(nb_accidents)
     )
-
+    return false
   )
 
+  #
+  # Hanlde event in update button on radars popup to update the map
+  #
+  $(".menu-popup.radars .update").live("click", (event) ->
+    event.preventDefault()
+    application_map.updateRadars($(".menu-popup.radars form").serializeArray())
+    return false
+  )
+
+  #
+  # Hanlde update on the revert button on radars popup
+  #
+  $(".menu-popup.radars .revert").live("click", (event) ->
+    event.preventDefault()
+    $(".menu-popup.radars input:checked").attr("checked", false)
+    return false
+  )
 
