@@ -7,14 +7,59 @@ class Map
     @heatmapData = new google.maps.MVCArray()
     @accidentMarkersData = []
     @currentView = null
+    @infoWindow = new google.maps.InfoWindow()
 
     @settings =
-      defaultZoomLevel: 11
+      defaultZoomLevel: 14
       defaultCenter:
         latitude: 48.856388 # Paris
         longitude: 2.350855 # Paris
       zoomHeatmapToMarkers: 13
       debug: true
+
+    @labels =
+      vehicules:
+        1 : "V&#233;lo"
+        2 : "Deux roues motoris&#233;"
+        3 : "V&#233;hicule l&#233;ger"
+        4 : "Autre"
+        5 : "Poids-lourd"
+        6 : "Transports en commun"
+      lumiere:
+        1 : "Plein jour"
+        2 : "Cr&#233;puscule ou aube"
+        3 : "Nuit sans &#233;clairage public"
+        4 : "Nuit avec &#233;clairage public non allum&#233;"
+        5 : "Nuit avec &#233;clairage public allum&#233;"
+      atmospherique:
+        1 : "Normale"
+        2 : "Pluie l&#233;g&#232;re"
+        3 : "Pluie forte"
+        4 : "Neige - gr&#234;le"
+        5 : "Brouillard - fum&#233;é"
+        6 : "Vent fort - temp&#234;te"
+        7 : "Temps &#233;blouissant"
+        8 : "Temps couvert"
+        9 : "Autre"
+      route :
+        1 : "Autoroute"
+        2 : "Route nationale"
+        3 : "Route d&#233;partementale"
+        4 : "Voie communale"
+        5 : "Hors r&#233;seau public"
+        6 : "Parc de stationnement"
+        9 : "Autre"
+      intersection :
+        1 : "Hors intersection"
+        2 : "Intersection en X"
+        3 : "Intersection en T"
+        4 : "Intersection en T"
+        5 : "Intersection &#224; plus de 4 branches"
+        6 : "Giratoire"
+        7 : "Place"
+        8 : "Passage &#224; niveau"
+        9 : "Autre intersection"
+
 
   # Initilize and display the map
   initialize: () ->
@@ -49,7 +94,7 @@ class Map
       overviewMapControl: false
       scaleControl: false
       zoomControlOptions:
-        position: google.maps.ControlPosition.RIGHT_TOP
+        position: google.maps.ControlPosition.RIGHT_CENTER
 
     @map = new google.maps.Map(document.getElementById("map"), mapOptions)
     @map.mapTypes.set "map_style", styledMap
@@ -133,13 +178,22 @@ class Map
     this.debug("Display accident markers")
     @currentView = "markers"
 
+    that = this
     # Add accidentMarkers
     _.each(@accidentData, (accident) =>
-      @accidentMarkersData.push new google.maps.Marker(
-            position: new google.maps.LatLng(accident.latitude,accident.longitude),
-            map: @map,
-            icon: this.getAccidentMarkerImage(accident.gravite)
-          )
+      marker = new google.maps.Marker(
+                position: new google.maps.LatLng(accident.latitude,accident.longitude),
+                map: @map,
+                icon: this.getAccidentMarkerImage(accident.gravite)
+                numac: accident.numac
+              )
+
+
+      google.maps.event.addListener(marker, 'click', (event) ->
+        that.displayAccidentDetails(this, that)
+      )
+
+      @accidentMarkersData.push marker
     )
 
   #
@@ -164,6 +218,49 @@ class Map
       return '/assets/mark-acc-02.png'
     else
       return '/assets/mark-acc-03.png'
+
+  #
+  # Display the accident detail in an infoWindow
+  #
+  displayAccidentDetails: (marker, that) ->
+    numac = marker.numac
+    infoWindow = that.infoWindow
+
+
+# Taux de gravité : (gravité)
+
+    $.ajax(
+      url: "/accidents/" + numac + ".json"
+      success: (data) =>
+        content = "<strong>Accident &#224; " + data.accident.ville + "</strong><br/>"
+        if data.accident.tues < 2
+          content += data.accident.tues + " tué<br/>"
+        else
+          content += data.accident.tues + " tués<br/>"
+
+        if data.vehicules.length < 2
+          content += "Impliquant " + data.vehicules.length + " v&#233;hicule: "
+        else
+          content += "Impliquant " +data.vehicules.length + " v&#233;hicules: "
+
+        _.each(data.vehicules, (element, index, list) ->
+          content += that.labels.vehicules[element.vehicule]
+          if index < list.length - 1
+            content += ", "
+          else
+            content += "<br/>"
+        )
+
+        content += "Conditions: " + that.labels.atmospherique[data.accident.atmospherique] + ", " + that.labels.lumiere[data.accident.lumiere] + "<br/>"
+
+        content += "Type de route : " + that.labels.route[data.accident.route] + ", " + that.labels.intersection[data.accident.intersection] + "<br/>"
+        content += "Taux de gravit&#233;: " + data.accident.gravite
+
+        infoWindow.setContent(content)
+        infoWindow.open(@map, marker)
+
+    )
+
 
 
 

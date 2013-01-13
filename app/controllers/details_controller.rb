@@ -12,7 +12,7 @@ class DetailsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @result }
+      format.json { render json: @result.as_json(:detailed => true) }
     end
   end
 end
