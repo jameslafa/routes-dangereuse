@@ -13,6 +13,7 @@ a:active
 
 *:focus
   -moz-outline-style: none
+  outline: none !important
 
 #map
   height: 100%
@@ -182,7 +183,7 @@ a:active
         line-height: 28px
         margin-top: 8px
         text-align: center
-        width: 163px
+        width: 155px
 
       a
         display: block
@@ -192,16 +193,16 @@ a:active
           background-position: 0 0
           background-repeat: no-repeat
           float: right
-          height: 28px
+          height: 34px
           margin-right: 6px
-          margin-top: 8px
-          width: 97px
+          margin-top: 2px
+          width: 102px
 
 
           &:hover
-            background-position: 0 -28px
+            background-position: 0 -37px
           &:active
-            background-position: 0 -58px
+            background-position: 0 -74px
 
         &.revert
           background-image: image-url("popup_criteres_revert.png")
@@ -215,9 +216,9 @@ a:active
 
 
           &:hover
-            background-position: 0 -28px
+            background-position: 0 -37px
           &:active
-            background-position: 0 -58px
+            background-position: 0 -74px
 
   &.radars
     background: image-url("popup_radars.png") 0 0 no-repeat
@@ -229,7 +230,79 @@ a:active
     .content
       height: 503px
       margin-top: 23px
-      margin-left: 10px
+      margin-left: 12px
       width: 289px
 
+      .radar
+        border-bottom: 1px solid #ddd
+        cursor: pointer
+        font-size: 14px
+        font-weight: bold
+        line-height: 32px
+
+        input
+          float: right
+          margin: 10px 15px 0 0
+
+        &:last-child
+          border-bottom: none
+
+        .picto
+          background-image: image-url("sprite_pictos_popup.png")
+          background-repeat: no-repeat
+          float: left
+          height: 25px
+          margin: 3px 5px
+          width: 28px
+
+          &.rad-feurouge
+            background-position: -266px 0
+          &.rad-pdslourds
+            background-position: -304px 0
+          &.rad-radarfixe
+            background-position: -342px 0
+          &.rad-troncon
+            background-position: -380px 0
+
+    .popup-footer
+      bottom: 12px
+      height: 43px
+      left: 4px
+      position: absolute
+      width: 301px
+
+      a
+        display: block
+
+        &.update
+          background-image: image-url("popup_radars_refresh.png")
+          background-position: 0 0
+          background-repeat: no-repeat
+          float: right
+          height: 28px
+          margin-right: 6px
+          margin-top: 12px
+          width: 97px
+
+
+          &:hover
+            background-position: 0 -28px
+          &:active
+            background-position: 0 -56px
+
+        &.revert
+          background-image: image-url("popup_radars_revert.png")
+          background-position: 0 0
+          background-repeat: no-repeat
+          float: left
+          height: 28px
+          margin-left: 6px
+          margin-top: 12px
+          width: 29px
+
+
+          &:hover
+            background-position: 0 -28px
+          &:active
+            background-position: 0 -56px
 

@@ -323,10 +323,12 @@ $(document).ready ->
       $(".menu-popup.criteres").fadeOut("fast")
       $(this).removeClass("active")
     else
+      $(".menu-popup.radars").fadeOut("fast")
+      $(".header .radars").removeClass("active")
       $(".menu-popup.criteres").fadeIn("fast")
       $(this).addClass("active")
 
-      return false
+    return false
   )
 
   # Activate click on critere menu to display and hide the critere popup
@@ -337,10 +339,12 @@ $(document).ready ->
       $(".menu-popup.radars").fadeOut("fast")
       $(this).removeClass("active")
     else
+      $(".menu-popup.criteres").fadeOut("fast")
+      $(".header .criteres").removeClass("active")
       $(".menu-popup.radars").fadeIn("fast")
       $(this).addClass("active")
 
-      return false
+    return false
   )
 
   # Uncheck every checkbox to reinitilize criteria on refresh
