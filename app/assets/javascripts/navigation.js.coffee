@@ -501,3 +501,8 @@ $(document).ready ->
     return false
   )
 
+  loader = $.ImgLoader(
+    srcs: ['/assets/popup_criteres.png', '/assets/popup_radars.png']
+  )
+  loader.load()
+

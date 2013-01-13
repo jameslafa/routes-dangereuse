@@ -12,5 +12,6 @@
 //
 //= require jquery
 //= require jquery-ui-1.9.2.custom.min.js
+//= require jquery.imgloader.min.js
 //= require underscore-min.js
 //= require_tree .
