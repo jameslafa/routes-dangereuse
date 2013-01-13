@@ -7,16 +7,11 @@ class Map
     @heatmapData = new google.maps.MVCArray()
     @accidentMarkersData = []
     @currentView = null
-    # @infoWindow = new google.maps.InfoWindow(
-    #   maxWidth: 350
-    #   boxStyle: {
-    #     backgroundColor: '#444'
-    #     opacity: 0.75
-    #   }
-    # )
 
     @infoWindow = new InfoBox(
       maxWidth: 0
+      closeBoxURL: "/assets/bt-close.png"
+      closeBoxMargin: "5px"
     )
 
     @settings =
@@ -484,6 +479,18 @@ $(document).ready ->
   $(".menu-popup.radars .revert").live("click", (event) ->
     event.preventDefault()
     $(".menu-popup.radars input:checked").attr("checked", false)
+    return false
+  )
+
+  $(".credits .close").live("click", (event) ->
+    event.preventDefault()
+    $(".credits").fadeOut("fast")
+    return false
+  )
+
+  $(".footer .sources").live("click", (event) ->
+    event.preventDefault()
+    $(".credits").fadeIn("fast")
     return false
   )
 

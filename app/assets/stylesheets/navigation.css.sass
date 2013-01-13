@@ -15,6 +15,11 @@ a:active
   -moz-outline-style: none
   outline: none !important
 
+*
+  -moz-box-sizing: border-box
+  -webkit-box-sizing: border-box
+  box-sizing: border-box
+
 #map
   height: 100%
   width: 100%
@@ -28,6 +33,13 @@ a:active
   top: 0
   width: 100%
   z-index: 99
+
+  .title
+    background: image-url("title.png") 0 0 no-repeat
+    float: right
+    height: 19px
+    margin: 11px 15px 0 0
+    width: 395px
 
   .button
     background-position: 0 0
@@ -60,6 +72,15 @@ a:active
   position: absolute
   width: 100%
   z-index: 99
+
+  .sources
+    color: #4d4d4d
+    float: left
+    font-weight: bold
+    font-size: 13px
+    margin-left: 10px
+    margin-top: 20px
+    text-decoration: none
 
 .menu-popup
   position: absolute
@@ -327,5 +348,95 @@ a:active
   .content
     padding: 5px 10px
     line-height: 17px
+
+.credits
+  background: image-url("source_bg.png") 0 -130px repeat-x
+  border-radius: 10px
+  box-shadow: 0 2px 3px 0 #333
+  bottom: 50px
+  display: none
+  left: 5%
+  padding: 20px 0
+  position: absolute
+  width: 90%
+  z-index: 200
+
+  .close
+    background: image-url("source_close.png") 0 0 no-repeat
+    display: block
+    height: 23px
+    position: absolute
+    right: -12px
+    top: -9px
+    width: 24px
+
+  a
+    text-decoration: none
+    color: #4d4d4d
+
+    .anchor
+      background: image-url("anchor.png") no-repeat top left
+      background-position: 0 -36px
+      display: inline-block
+      height: 13px
+      vertical-align: middle
+      width: 14px
+
+    &:hover, &:visited
+      color: #4d4d4d
+
+      .anchor
+        background-position: 0 -18px
+
+    &:active .anchor
+      background-position: 0 0
+
+
+
+  .title
+    background: image-url("source_title.png") 1px 0 no-repeat
+    height: 86px
+    margin-left: 30px
+    margin-top: 30px
+    margin-bottom: 20px
+    width: 560px
+
+  .subtitle
+    color: black
+    font-size: 16px
+    font-weight: bold
+    padding-left: 30px
+
+  .text
+    color: #4d4d4d
+    font-size: 13px
+    line-height: 18px
+    font-weight: normal
+
+    .left-col
+      float: left
+      padding: 0 30px
+      text-align: justify
+      width: 65%
+
+    .right-col
+      float: right
+      padding: 0 30px
+      position: relative
+      width: 35%
+
+    .asklogo
+      background: image-url("logo_askmedia.png") 0 0 no-repeat
+      display: block
+      height: 27px
+      position: absolute
+      bottom: 30px
+      right: 30px
+      width: 120px
+
+    .tips
+      font-size: 11.5px
+      font-style:italic
+
 
 

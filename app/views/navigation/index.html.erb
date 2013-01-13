@@ -1,6 +1,41 @@
 <div class="header">
   <div class="button criteres"></div>
   <div class="button radars"></div>
+  <div class="title"></div>
+</div>
+
+<div class="credits">
+  <a href="#" class="close"></a>
+  <div class="title"></div>
+  <div class="subtitle">Sources et cr&#233;dits</div>
+  <div class="text">
+    <div class="left-col">
+      <p>Cette application permet de visualiser les zones les plus dangereuses de l'Ile-de France et d'affiner cette carte selon diff&#233;rents crit&#232;res (luminosit&#233;, cat&#233;gorie du v&#233;hicule, etc.).
+      </p>
+      <p>Les donn&#233;es accidents sont issues de la base de donn&#233;es des accidents corporels sur la p&#233;riode 2006-2011, publi&#233;es sur <a href="http://www.data.gouv.fr/donnees/view/Base-de-donn%C3%A9es-accidents-corporels-de-la-circulation-sur-6-ann%C3%A9es---France-enti%C3%A8re---2006-2011-564096?xtmc=accidents&xtcr=8" target="_blank">data.gouv.fr <span class="anchor"></span></a> par le Minist&#232;re de l'Int&#233;rieur.
+      </p>
+      <p>Cette base donne un certain nombre de renseignements par accident (conditions atmosph&#233;rique, type de collision, etc.) mais ne pr&#233;cise pas l'ann&#233;e de l'accident. C'est une volont&#233; de l'administration afin que les personnes impliqu&#233;es dans les accidents ne soient pas reconnues.
+      </p>
+      <p>Pour cette application, nous avons retenu uniquement les donn&#233;es concernant l'Ile-de-France, ainsi que les accidents dont l'indice de gravit&#233;<sup>*</sup> &#233;tait sup&#233;rieur &#224; 30. 10% de ces donn&#233;es ne pr&#233;sentaient pas d'information de localisation (coordonn&#233;es GPS ou adresse) : elles ne sont donc pas pr&#233;sentes sur cette carte.
+      </p>
+      <p>Les donn&#233;es radars sont issues du site radar-auto.com, site participatif de localisation des radars.
+      </p>
+      <p class="tips"><strong><sup>*</sup>indice de gravit&#233;:</strong> cet indice est fix&#233; par le minist&#232;re de l'Int&#233;rieur. Chaque tu&#233; correspond &#224; une valeur de 100, chaque hospitalis&#233; &#224; hauteur de10,8, chaque bless&#233; l&#233;ger &#224; hauteur de 0,44.</p>
+    </div>
+    <div class="right-col">
+      <p>Cette application a &#233;t&#233; r&#233;alis&#233;e par <a href="http://askmedia.fr/blog/" target="_blank">Askmedia <span class="anchor"></span></a> pour <a href="http://www.leparisien.fr/" target="_blank">leparisien.fr <span class="anchor"></span></a></p>
+
+      <p><strong>Traitement des donn&#233;es et conception de l'application:</strong><br/>
+      St&#233;phane Saulnier<br/>
+      Marie Coussin<br/>
+      Mathilde Boireau</p>
+
+      <p><strong>Design:</strong> <a href="http://www.jetkolorz.net" target="_blank">Hadrien Pennes <span class="anchor"></span></a></p>
+
+      <p><strong>D&#233;veloppement:</strong> <a href="http://james-lafa.fr" target="_blank">James Lafa <span class="anchor"></span></a></p>
+    </div>
+    <a class="asklogo" href="http://askmedia.fr/blog/" target="_blank"></a>
+  </div>
 </div>
 
 <div class="menu-popup criteres">
@@ -106,5 +141,5 @@
 
 <div id="map"></div>
 <div class="footer">
-
+  <a class="sources" href="#">Sources et mentions l&#233;gales</a>
 </div>
