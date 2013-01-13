@@ -7,7 +7,17 @@ class Map
     @heatmapData = new google.maps.MVCArray()
     @accidentMarkersData = []
     @currentView = null
-    @infoWindow = new google.maps.InfoWindow()
+    # @infoWindow = new google.maps.InfoWindow(
+    #   maxWidth: 350
+    #   boxStyle: {
+    #     backgroundColor: '#444'
+    #     opacity: 0.75
+    #   }
+    # )
+
+    @infoWindow = new InfoBox(
+      maxWidth: 0
+    )
 
     @settings =
       defaultZoomLevel: 14
@@ -243,16 +253,16 @@ class Map
     $.ajax(
       url: "/accidents/" + numac + ".json"
       success: (data) =>
-        content = "<strong>Accident &#224; " + data.accident.ville + "</strong><br/>"
+        content = "<h2>Accident &#224; " + data.accident.ville + "</h2><div class='content'>"
         if data.accident.tues < 2
-          content += data.accident.tues + " tué<br/>"
+          content += "<strong>Victimes: </strong>" + data.accident.tues + " tué<br/>"
         else
-          content += data.accident.tues + " tués<br/>"
+          content += "<strong>Victimes: </strong>" + data.accident.tues + " tués<br/>"
 
         if data.vehicules.length < 2
-          content += "Impliquant " + data.vehicules.length + " v&#233;hicule: "
+          content += "<strong>Impliquant " + data.vehicules.length + " v&#233;hicule: </strong>"
         else
-          content += "Impliquant " +data.vehicules.length + " v&#233;hicules: "
+          content += "<strong>Impliquant " +data.vehicules.length + " v&#233;hicules: </strong>"
 
         _.each(data.vehicules, (element, index, list) ->
           content += that.labels.vehicules[element.vehicule]
@@ -262,10 +272,10 @@ class Map
             content += "<br/>"
         )
 
-        content += "Conditions: " + that.labels.atmospherique[data.accident.atmospherique] + ", " + that.labels.lumiere[data.accident.lumiere] + "<br/>"
+        content += "<strong>Conditions: </strong>" + that.labels.atmospherique[data.accident.atmospherique] + ", " + that.labels.lumiere[data.accident.lumiere] + "<br/>"
 
-        content += "Type de route : " + that.labels.route[data.accident.route] + ", " + that.labels.intersection[data.accident.intersection] + "<br/>"
-        content += "Taux de gravit&#233;: " + data.accident.gravite
+        content += "<strong>Type de route: </strong>" + that.labels.route[data.accident.route] + ", " + that.labels.intersection[data.accident.intersection] + "<br/>"
+        content += "<strong>Taux de gravit&#233;: </strong>" + data.accident.gravite + "</div>"
 
         infoWindow.setContent(content)
         infoWindow.open(@map, marker)

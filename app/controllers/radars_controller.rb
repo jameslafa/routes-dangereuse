@@ -5,7 +5,7 @@ class RadarsController < ApplicationController
     if params.has_key? :category
       @radars = Radar.where(:categorie => params[:category])
     else
-      @radars = Radar.all
+      @radars = []
     end
 
     @result = {
