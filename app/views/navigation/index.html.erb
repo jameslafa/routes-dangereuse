@@ -21,6 +21,7 @@
       <p>Les donn&#233;es radars sont issues du site <a href="http://radars-auto.com/" target="_blank">radars-auto.com <span class="anchor"></span></a>, site participatif de localisation des radars.
       </p>
       <p class="tips"><strong><sup>*</sup>indice de gravit&#233;:</strong> cet indice est fix&#233; par le minist&#232;re de l'Int&#233;rieur. Chaque tu&#233; correspond &#224; une valeur de 100, chaque hospitalis&#233; &#224; hauteur de10,8, chaque bless&#233; l&#233;ger &#224; hauteur de 0,44.</p>
+      <p>Pour tout retour concernant l'application, merci de les adresser &#224; : <a href="mailto:app@askmedia.fr">app@askmedia.fr</a></p>
     </div>
     <div class="right-col">
       <p>Cette application a &#233;t&#233; r&#233;alis&#233;e par <a href="http://askmedia.fr/blog/" target="_blank">Askmedia <span class="anchor"></span></a> pour <a href="http://www.leparisien.fr/" target="_blank">leparisien.fr <span class="anchor"></span></a></p>
@@ -41,11 +42,11 @@
 <div class="menu-popup criteres">
   <div class="content">
     <form class="form-criteres">
-      <div class="section-critere-title"><div class="picto crit-tues"></div>Nombre de tu&#233;s<div class="critere-count empty"></div></div>
+      <div class="section-critere-title"><div class="picto crit-tues"></div>Niveau de gravit&#233;<div class="critere-count empty"></div></div>
       <div class="section-criteres">
-        <div class="critere">Aucun <input type="checkbox" name="tues[]" value="0"></div>
-        <div class="critere">Un tué <input type="checkbox" name="tues[]" value="1"></div>
-        <div class="critere">Plus d'un tué <input type="checkbox" name="tues[]" value="2"></div>
+        <div class="critere">Que bless&#233;s graves <input type="checkbox" name="tues[]" value="0"></div>
+        <div class="critere">Au moins un tué <input type="checkbox" name="tues[]" value="1..100"></div>
+        <div class="critere">Plus d'un tué <input type="checkbox" name="tues[]" value="2..100"></div>
       </div>
 
       <div class="section-critere-title"><div class="picto crit-meteo"></div>Conditions m&#233;t&#233;o<div class="critere-count empty"></div></div>
@@ -66,9 +67,9 @@
         <div class="critere">V&#233;lo <input type="checkbox" name="vehicules[]" value="1"></div>
         <div class="critere">Deux roues motoris&#233; <input type="checkbox" name="vehicules[]" value="2"></div>
         <div class="critere">V&#233;hicule l&#233;ger <input type="checkbox" name="vehicules[]" value="3"></div>
-        <div class="critere">Autres <input type="checkbox" name="vehicules[]" value="4"></div>
         <div class="critere">Poids-lourd <input type="checkbox" name="vehicules[]" value="5"></div>
         <div class="critere">Transports en commun <input type="checkbox" name="vehicules[]" value="6"></div>
+        <div class="critere">Autres <input type="checkbox" name="vehicules[]" value="4"></div>
       </div>
 
       <div class="section-critere-title"><div class="picto crit-typevoie"></div>Types de voies<div class="critere-count empty"></div></div>
@@ -91,7 +92,7 @@
         <div class="critere">Nuit avec &#233;clairage public allum&#233; <input type="checkbox" name="lumiere[]" value="5"></div>
       </div>
 
-      <div class="section-critere-title"><div class="picto crit-collision"></div>Type de collision<div class="critere-count empty"></div></div>
+      <div class="section-critere-title"><div class="picto crit-collision"></div>Types de collision<div class="critere-count empty"></div></div>
       <div class="section-criteres">
         <div class="critere">Deux v&#233;hicules - frontale <input type="checkbox" name="collision[]" value="1"></div>
         <div class="critere">Deux v&#233;hicules – par l'arri&#232;re <input type="checkbox" name="collision[]" value="2"></div>
@@ -107,7 +108,7 @@
         <div class="critere">Hors intersection <input type="checkbox" name="intersection[]" value="1"></div>
         <div class="critere">Intersection en X <input type="checkbox" name="intersection[]" value="2"></div>
         <div class="critere">Intersection en T <input type="checkbox" name="intersection[]" value="3"></div>
-        <div class="critere">Intersection en T <input type="checkbox" name="intersection[]" value="4"></div>
+        <div class="critere">Intersection en Y <input type="checkbox" name="intersection[]" value="4"></div>
         <div class="critere">Intersection &#224; plus de 4 branches <input type="checkbox" name="intersection[]" value="5"></div>
         <div class="critere">Giratoire <input type="checkbox" name="intersection[]" value="6"></div>
         <div class="critere">Place <input type="checkbox" name="intersection[]" value="7"></div>

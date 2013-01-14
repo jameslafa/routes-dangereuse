@@ -16,6 +16,7 @@ class Map
 
     @settings =
       defaultZoomLevel: 11
+      minZoomLevel: 8
       defaultCenter:
         latitude: 48.856388 # Paris
         longitude: 2.350855 # Paris
@@ -91,6 +92,7 @@ class Map
     mapOptions =
       center: new google.maps.LatLng(@settings.defaultCenter.latitude, @settings.defaultCenter.longitude) # Paris
       zoom: @settings.defaultZoomLevel
+      minZoom: @settings.minZoomLevel
       mapTypeControlOptions:
         mapTypeIds: [google.maps.MapTypeId.ROADMAP, "map_style"]
       panControl: false
@@ -206,7 +208,7 @@ class Map
       marker = new google.maps.Marker(
                 position: new google.maps.LatLng(accident.latitude,accident.longitude),
                 map: @map,
-                icon: this.getAccidentMarkerImage(accident.tues)
+                icon: this.getAccidentMarkerImage(accident.gravite)
                 numac: accident.numac
               )
 
@@ -233,14 +235,15 @@ class Map
   #
   # Return the correct image depending how many people were killed in the accident
   #
-  getAccidentMarkerImage: (tues) ->
-    switch tues
-      when 0
+  getAccidentMarkerImage: (gravite) ->
+      if gravite < 50
         return '/assets/mark-acc-01.png'
-      when 1
+      else if gravite < 115
         return '/assets/mark-acc-02.png'
-      else
+      else if gravite < 200
         return '/assets/mark-acc-03.png'
+      else
+        return '/assets/mark-acc-04.png'
 
   #
   # Display the accident detail in an infoWindow
@@ -256,10 +259,25 @@ class Map
       url: "/accidents/" + numac + ".json"
       success: (data) =>
         content = "<h2>Accident &#224; " + data.accident.ville + "</h2><div class='content'>"
-        if data.accident.tues < 2
-          content += "<strong>Victime: </strong>" + data.accident.tues + " tué<br/>"
+        if data.accident.tues + data.accident.hospitalises < 2
+          content += "<strong>Victime: </strong>"
         else
-          content += "<strong>Victimes: </strong>" + data.accident.tues + " tués<br/>"
+          content += "<strong>Victimes: </strong>"
+
+        if data.accident.tues == 1
+          content += data.accident.tues + " tué"
+        else if data.accident.tues > 1
+          content += data.accident.tues + " tués"
+
+        if data.accident.tues > 0 and data.accident.hospitalises > 0
+          content += ", "
+
+        if data.accident.hospitalises == 1
+          content += data.accident.hospitalises + " blessé grave"
+        else if data.accident.hospitalises > 1
+          content += data.accident.hospitalises + " blessés graves"
+
+        content += "<br/>"
 
         if data.vehicules.length < 2
           content += "<strong>Impliquant " + data.vehicules.length + " v&#233;hicule: </strong>"
@@ -277,7 +295,7 @@ class Map
         content += "<strong>Conditions: </strong>" + that.labels.atmospherique[data.accident.atmospherique] + ", " + that.labels.lumiere[data.accident.lumiere] + "<br/>"
 
         content += "<strong>Type de route: </strong>" + that.labels.route[data.accident.route] + ", " + that.labels.intersection[data.accident.intersection] + "<br/>"
-        content += "<strong>Taux de gravit&#233;: </strong>" + data.accident.gravite + "</div>"
+        content += "<strong>Indice de gravit&#233;: </strong>" + data.accident.gravite + "</div>"
 
         infoWindow.setContent(content)
         infoWindow.open(@map, marker)

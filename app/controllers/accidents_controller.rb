@@ -3,7 +3,7 @@ class AccidentsController < ApplicationController
   # GET /accidents.json
   def index
     conditions = {}
-    available_parameters = [:lumiere, :intersection, :atmospherique, :route, :collision]
+    available_parameters = [:lumiere, :intersection, :atmospherique, :route, :collision, :tues]
 
     # Loop on every requestable parameters and add it to the request condition
     available_parameters.each do |param|
@@ -12,13 +12,13 @@ class AccidentsController < ApplicationController
 
     # Add the tues condition
 
-    if params.has_key?(:tues)
-      if params[:tues].include?("2")
-        conditions[:tues] = 2..100
-      else
-        conditions[:tues] = params[:tues]
-      end
-    end
+    # if params.has_key?(:tues)
+    #   if params[:tues].include?("2")
+    #     conditions[:tues] = 2..100
+    #   else
+    #     conditions[:tues] = params[:tues]
+    #   end
+    # end
 
     # Add the vehicule condition
     vehicule_condition = ""

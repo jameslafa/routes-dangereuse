@@ -7,7 +7,8 @@ class Accident < ActiveRecord::Base
 
   def as_json(options={})
     if not options[:detailed]
-      result = super({ :only => [:numac, :latitude, :longitude, :tues] }.merge(options))
+      result = super({ :only => [:numac, :latitude, :longitude, :gravite] }.merge(options))
+      result[:gravite] = self.gravite.to_f
     else
       result = super({ :except => [:created_at, :updated_at, :id] }.merge(options))
     end
