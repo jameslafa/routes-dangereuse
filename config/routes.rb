@@ -1,5 +1,6 @@
 RoutesDangereuses::Application.routes.draw do
 
+  match '/app' => 'navigation#index'
   # Radars
   match 'radars/list(.:format)' => 'radars#index'
   # Liste des accidents
@@ -56,7 +57,7 @@ RoutesDangereuses::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'navigation#index'
+  root :to => 'navigation#accueil'
 
   # See how all your routes lay out with "rake routes"
 
