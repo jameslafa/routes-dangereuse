@@ -20,6 +20,77 @@ a:active
   -webkit-box-sizing: border-box
   box-sizing: border-box
 
+.splash
+  background-color: #181818
+
+  .top
+    background: image-url("splash_top.jpg") 0 10px no-repeat
+    height: 412px
+    margin: 0 auto
+    width: 1059px
+
+  .introduction
+    background: #f3f3f3 image-url("splash_intro.jpg") 104px 0 no-repeat
+    color: #4d4d4d
+    font-size: 13px
+    line-height: 17px
+    margin: 0 auto
+    text-align: justify
+    width: 1059px
+
+    .col-1
+      float: left
+      margin: 230px 0 20px 104px
+      width: 362px
+
+    .col-2
+      float: left
+      margin: 230px 0 20px 32px
+      width: 261px
+
+    .col-3
+      float: left
+      margin: 230px 0 20px 32px
+      width: 161px
+
+    .application
+      background: image-url("splash_application.png") 0 0 no-repeat
+      clear: both
+      display: block
+      height: 43px
+      margin: 0 auto
+      width: 264px
+
+      &:hover
+        background-position: 0 -45px
+
+      &:active
+        background-position: 0 -90px
+
+  .bottom
+    background: image-url("splash_bottom.jpg") 0 0 no-repeat
+    height: 131px
+    margin: 0 auto
+    position: relative
+    width: 1061px
+
+    a
+      display: block
+      position: absolute
+
+      &.parisien
+        left: 380px
+        top: 29px
+        height: 50px
+        width: 149px
+
+      &.askmedia
+        left: 583px
+        top: 40px
+        height: 27px
+        width: 115px
+
+
 #map
   height: 100%
   width: 100%
