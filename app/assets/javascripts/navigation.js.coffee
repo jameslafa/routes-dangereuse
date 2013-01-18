@@ -20,7 +20,7 @@ class Map
       defaultCenter:
         latitude: 48.856388 # Paris
         longitude: 2.350855 # Paris
-      zoomHeatmapToMarkers: 12
+      zoomHeatmapToMarkers: 13
       debug: false
 
     @labels =
@@ -530,6 +530,12 @@ $(document).ready ->
     $(".footer .sources").live("click", (event) ->
       event.preventDefault()
       $(".credits-wrapper").fadeIn("fast")
+      return false
+    )
+
+    $(".search .submit").live("click", (event) ->
+      event.preventDefault()
+      $(".search").submit()
       return false
     )
 

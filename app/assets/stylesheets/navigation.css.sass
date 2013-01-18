@@ -90,6 +90,20 @@ a:active
       margin: 2px 0 0 10px
       width: 310px
 
+    .submit
+      background: image-url("loupe.png") 0 0 no-repeat
+      display: block
+      float: right
+      height: 14px
+      margin: 6px 6px 0 0
+      width: 16px
+
+      &:hover
+        background-position: 0 -30px
+
+      &:active
+        background-position: 0 -15px
+
   .notice
     background-color: rgba(0,0,0,0.8)
     border-radius: 0 0 10px 10px
@@ -422,6 +436,11 @@ a:active
 
   .splash
     background: image-url("splash.jpg") 0 0 no-repeat
+    -moz-border-radius: 10px
+    -ms-border-radius: 10px
+    -o-border-radius: 10px
+    -webkit-border-radius: 10px
+    border-radius: 10px
     margin: 12px auto
     height: 945px
     position: relative
@@ -465,6 +484,10 @@ a:active
   z-index: 200
 
   .credits
+    -moz-border-radius: 10px
+    -ms-border-radius: 10px
+    -o-border-radius: 10px
+    -webkit-border-radius: 10px
     margin: 12px auto
     position: relative
     width: 1024px
