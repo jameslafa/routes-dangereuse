@@ -7,6 +7,7 @@ body
   color: #48453f
   height: 100%
   margin: 0
+  min-width: 960px
   padding: 0
 
 a:active
@@ -21,74 +22,13 @@ a:active
   -webkit-box-sizing: border-box
   box-sizing: border-box
 
-.splash
-  .top
-    background: image-url("splash_top.jpg") -1px 10px no-repeat
-    height: 412px
-    margin: 0 auto
-    width: 1059px
-
-  .introduction
-    background: #f3f3f3 image-url("splash_intro.jpg") 104px 0 no-repeat
-    color: #4d4d4d
-    font-size: 13px
-    line-height: 17px
-    margin: 0 auto
-    text-align: justify
-    width: 1059px
-
-    .col-1
-      float: left
-      margin: 230px 0 20px 104px
-      width: 362px
-
-    .col-2
-      float: left
-      margin: 230px 0 20px 32px
-      width: 261px
-
-    .col-3
-      float: left
-      margin: 230px 0 20px 32px
-      width: 161px
-
-    .application
-      background: image-url("splash_application.png") 0 0 no-repeat
-      clear: both
-      display: block
-      height: 43px
-      margin: 0 auto
-      width: 264px
-
-      &:hover
-        background-position: 0 -45px
-
-      &:active
-        background-position: 0 -90px
-
-  .bottom
-    background: image-url("splash_bottom.jpg") 0 0 no-repeat
-    height: 131px
-    margin: 0 auto
-    position: relative
-    width: 1061px
-
-    a
-      display: block
-      position: absolute
-
-      &.parisien
-        left: 380px
-        top: 29px
-        height: 50px
-        width: 149px
-
-      &.askmedia
-        left: 583px
-        top: 40px
-        height: 27px
-        width: 115px
-
+.clearfix
+  *zoom: 1
+  &:before, &:after
+    display: table
+    content: ""
+  &:after
+    clear: both
 
 #map
   height: 100%
@@ -99,6 +39,7 @@ a:active
   background: image-url("menu_bg.png") 0 0 repeat-x
   height: 52px
   left: 0
+  min-width: 960px
   position: absolute
   top: 0
   width: 100%
@@ -107,9 +48,9 @@ a:active
   .title
     background: image-url("title.png") 0 0 no-repeat
     float: right
-    height: 19px
-    margin: 11px 15px 0 0
-    width: 417px
+    height: 24px
+    margin: 9px 15px 0 0
+    width: 283px
 
   .button
     background-position: 0 0
@@ -133,6 +74,45 @@ a:active
     &.radars
       background-image: image-url("button_radars.png")
       width: 104px
+
+  .search
+    background-image: image-url("search.png")
+    display: block
+    margin: 6px auto
+    height: 26px
+    position: relative
+    width: 348px
+
+    input
+      background: transparent
+      border: none
+      height: 22px
+      margin: 2px 0 0 10px
+      width: 310px
+
+  .notice
+    background-color: rgba(0,0,0,0.8)
+    border-radius: 0 0 10px 10px
+    color: white
+    font-size: 12px
+    left: 30%
+    height: 30px
+    line-height: 30px
+    position: absolute
+    top: -50px
+    text-align: center
+    width: 40%
+    z-index: 200
+
+    transition: top 0.5s ease-out
+    -moz-transition: top 0.5s ease-out
+    -webkit-transition: top 0.5s ease-out
+    -o-transition: top 0.5s ease-out
+
+    &.show
+      top: 0px
+
+
 
 .footer
   background: image-url("footer_bg.png") 0 0 repeat-x
@@ -276,11 +256,12 @@ a:active
       .nb_accidents
         color: white
         display: block
-        float: left
+        float: right
         font-size: 12px
         line-height: 28px
         margin-top: 8px
-        text-align: center
+        margin-right: 7px
+        text-align: right
         width: 155px
 
       a
@@ -430,58 +411,119 @@ a:active
     strong
       color: #fff
 
-.credits
-  background: image-url("source_bg.png") 0 0 repeat-x
-  border-radius: 10px
-  box-shadow: 0 2px 3px 0 #333
-  bottom: 50px
-  display: none
-  left: 5%
-  min-width: 650px
-  padding: 20px 0
+.splash-wrapper
+  background: image-url("mask.png") 0 0 repeat
+  height: 100%
+  left: 0
   position: absolute
-  width: 90%
+  top: 0
+  width: 100%
+  z-index: 300
+
+  .splash
+    background: image-url("splash.jpg") 0 0 no-repeat
+    margin: 12px auto
+    height: 945px
+    position: relative
+    width: 596px
+
+    .application
+      background: image-url("splash_application.png") 0 0 no-repeat
+      clear: both
+      display: block
+      left: 165px
+      height: 50px
+      margin: 0 auto
+      top: 620px
+      position: absolute
+      width: 272px
+
+      &:hover
+        background-position: 0 -55px
+
+      &:active
+        background-position: 0 -110px
+
+    a
+      display: block
+      position: absolute
+
+      &.askmedia
+        left: 257px
+        top: 862px
+        height: 27px
+        width: 115px
+
+.credits-wrapper
+  background: image-url("mask.png") 0 0 repeat
+  display: none
+  height: 100%
+  left: 0
+  position: absolute
+  top: 0
+  width: 100%
   z-index: 200
 
-  .close
-    background: image-url("source_close.png") 0 0 no-repeat
-    display: block
-    height: 23px
-    position: absolute
-    right: -12px
-    top: -9px
-    width: 24px
+  .credits
+    margin: 12px auto
+    position: relative
+    width: 1024px
 
-  a
-    text-decoration: none
-    color: #4d4d4d
+    .close
+      background: image-url("source_close.png") 0 0 no-repeat
+      display: block
+      height: 23px
+      position: absolute
+      right: -9px
+      top: -8px
+      width: 24px
 
-    .anchor
-      background: image-url("anchor.png") no-repeat top left
-      background-position: 0 -36px
-      display: inline-block
-      height: 13px
-      vertical-align: middle
-      width: 14px
+      &:hover
+        background-position: 0 -26px
 
-    &:hover, &:visited
+      &:active
+        background-position: 0 -52px
+
+    a
+      text-decoration: none
       color: #4d4d4d
 
       .anchor
-        background-position: 0 -18px
+        background: image-url("anchor.png") no-repeat top left
+        background-position: 0 -36px
+        display: inline-block
+        height: 13px
+        vertical-align: middle
+        width: 14px
 
-    &:active .anchor
-      background-position: 0 0
+      .twitter
+        background: image-url("twitter.png") no-repeat top left
+        background-position: 0 -36px
+        display: inline-block
+        height: 13px
+        vertical-align: middle
+        width: 14px
+
+      &:hover, &:visited
+        color: #4d4d4d
+
+        .anchor, .twitter
+          background-position: 0 -18px
+
+      &:active .anchor, &:active .twitter
+        background-position: 0 0
 
 
 
   .title
-    background: image-url("source_title.png") 1px 0 no-repeat
-    height: 90px
-    margin-left: 30px
-    margin-top: 30px
-    margin-bottom: 20px
-    width: 630px
+    background: image-url("source_header.jpg") 0 0 no-repeat
+    height: 220px
+    width: 1024px
+
+  .gravite
+    background: image-url("source_gravite.jpg") 0 0 no-repeat
+    height: 137px
+    width: 1024px
 
   .subtitle
     color: black
@@ -490,20 +532,22 @@ a:active
     padding-left: 30px
 
   .text
+    background: image-url("source_bg.png") 0 0 repeat
     color: #4d4d4d
     font-size: 13px
     line-height: 16px
+    margin: 0 4px 0 3px
     font-weight: normal
 
     .left-col
       float: left
-      padding: 0 30px
+      padding: 0 25px
       text-align: justify
       width: 65%
 
     .right-col
       float: right
-      padding: 0 30px
+      padding: 0 25px
       position: relative
       width: 35%
 

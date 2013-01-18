@@ -122,6 +122,15 @@ class Map
         this.debug("Accident data updated with success")
 
         @accidentData = data.data
+
+        if data.count == 0
+          nb_accidents = "Aucun accident"
+        else if data.count == 1
+          nb_accidents = "1 accident"
+        else
+          nb_accidents = data.count + " accidents"
+        $(".menu-popup.criteres .nb_accidents").text(nb_accidents)
+
         this.clearAccidentMarkers()
         this.clearAccidentHeatmap()
         this.updateDisplay(true)
@@ -252,9 +261,6 @@ class Map
     numac = marker.numac
     infoWindow = that.infoWindow
 
-
-# Taux de gravité : (gravité)
-
     $.ajax(
       url: "/accidents/" + numac + ".json"
       success: (data) =>
@@ -302,7 +308,36 @@ class Map
 
     )
 
+  zoomToAddress: (address) ->
+    if address
+        $.ajax(
+          url: "http://maps.googleapis.com/maps/api/geocode/json"
+          dataType: "json"
+          data:
+            address : address
+            components: "country:FR|administrative_area:IdF"
+            sensor: false
+            language: "fr"
 
+          success: (data) =>
+            if data.status == "OK"
+              if data.results.length > 0 and data.results[0].formatted_address != "Île-de-France, France"
+                new_center = new google.maps.LatLng(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng)
+                @map.setCenter(new_center)
+                @map.setZoom(15)
+              else
+                this.displayNotice("Aucun résultat trouvé")
+            else
+              this.displayNotice("Recherche indisponible, veuillez essayer plus tard")
+
+        )
+
+  displayNotice: (content) ->
+    $(".header .notice").text(content)
+    $(".header .notice").addClass("show")
+    window.setTimeout(() ->
+      $(".header .notice").removeClass("show")
+    , 2000)
 
 
   ##########
@@ -423,7 +458,7 @@ $(document).ready ->
     #
     # Handle event on input check on critere popup
     #
-    $(".menu-popup.criteres input").live("click", (event) ->
+    $(".menu-popup.criteres input").live("change", (event) ->
       # First, update the check criteria number
       nbCheckedInputs = $(this).parents(".section-criteres").find(":checked").length
       count = $(".menu-popup.criteres .section-critere-title.ui-state-active .critere-count")
@@ -435,31 +470,8 @@ $(document).ready ->
         count.addClass("empty")
         count.text("")
 
-      # Now count results
-      criterias = $(".menu-popup.criteres form").serializeArray()
-      criterias["count"] = true
-
-      $.ajax(
-        url: "/accidents/list.json"
-        data:criterias
-        success: (data) ->
-          if data.count == 0
-            nb_accidents = "Aucun accident"
-          else if data.count == 1
-            nb_accidents = "1 accident"
-          else
-            nb_accidents = data.count + " accidents"
-          $(".menu-popup.criteres .nb_accidents").text(nb_accidents)
-      )
-    )
-
-    #
-    # Hanlde event in update button on critere popup to update the map
-    #
-    $(".menu-popup.criteres .update").live("click", (event) ->
-      event.preventDefault()
+      # Now update map
       application_map.updateAccidents($(".menu-popup.criteres form").serializeArray())
-      return false
     )
 
     #
@@ -472,29 +484,16 @@ $(document).ready ->
       $(".menu-popup.criteres input:checked").attr("checked", false)
       $( ".form-criteres" ).accordion( "option", "active", 0)
 
-      # Now count results
-      criterias = $(".menu-popup.criteres form").serializeArray()
-      criterias["count"] = true
+      # Now update map
+      application_map.updateAccidents($(".menu-popup.criteres form").serializeArray())
 
-      $.ajax(
-        url: "/accidents/list.json"
-        data:criterias
-        success: (data) ->
-          if data.count == 0
-            nb_accidents = "Aucun accident"
-          else if data.count == 1
-            nb_accidents = "1 accident"
-          else
-            nb_accidents = data.count + " accident"
-          $(".menu-popup.criteres .nb_accidents").text(nb_accidents)
-      )
       return false
     )
 
     #
-    # Hanlde event in update button on radars popup to update the map
+    # Handle event on input check on radar popup
     #
-    $(".menu-popup.radars .update").live("click", (event) ->
+    $(".menu-popup.radars input").live("change", (event) ->
       event.preventDefault()
       application_map.updateRadars($(".menu-popup.radars form").serializeArray())
       return false
@@ -506,18 +505,31 @@ $(document).ready ->
     $(".menu-popup.radars .revert").live("click", (event) ->
       event.preventDefault()
       $(".menu-popup.radars input:checked").attr("checked", false)
+      application_map.updateRadars($(".menu-popup.radars form").serializeArray())
+      return false
+    )
+
+    $(".header .search").live("submit", (event) ->
+      event.preventDefault()
+      application_map.zoomToAddress($(".header .search input").val())
       return false
     )
 
     $(".credits .close").live("click", (event) ->
       event.preventDefault()
-      $(".credits").fadeOut("fast")
+      $(".credits-wrapper").fadeOut("fast")
+      return false
+    )
+
+    $(".splash .application").live("click", (event) ->
+      event.preventDefault()
+      $(".splash-wrapper").fadeOut("fast")
       return false
     )
 
     $(".footer .sources").live("click", (event) ->
       event.preventDefault()
-      $(".credits").fadeIn("fast")
+      $(".credits-wrapper").fadeIn("fast")
       return false
     )
 
